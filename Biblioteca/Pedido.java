@@ -8,15 +8,18 @@ public class Pedido {
     private Date fecha_Devolver;
     private Libro libroPedido;
     private Socio socioPrestado;
-    public Pedido(){
+
+    public Pedido() {
 
     }
-    public Pedido(Date prestamo,Date fecha_Devolver,Libro libroPedido,Socio socioPrestado){
-        this.fecha_Prestamo=prestamo;
-        this.fecha_Devolver=fecha_Devolver;
-        this.libroPedido=libroPedido;
-        this.socioPrestado=socioPrestado;
+
+    public Pedido(Date prestamo, Date fecha_Devolver, Libro libroPedido, Socio socioPrestado) {
+        this.fecha_Prestamo = prestamo;
+        this.fecha_Devolver = fecha_Devolver;
+        this.libroPedido = libroPedido;
+        this.socioPrestado = socioPrestado;
     }
+
     public Socio getSocioPrestado() {
         return socioPrestado;
     }
@@ -37,10 +40,10 @@ public class Pedido {
         return fecha_Devolver;
     }
 
-    public void setFecha_Devolver(Date fecha_Devolver,int dias) {
-        Calendar calendar =Calendar.getInstance();
+    public void setFecha_Devolver(Date fecha_Devolver, int dias) {
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(fecha_Prestamo);
-        calendar.add(Calendar.DAY_OF_YEAR,dias);
+        calendar.add(Calendar.DAY_OF_YEAR, dias);
 
 
         this.fecha_Devolver = calendar.getTime();
@@ -56,10 +59,10 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Fecha que fue prestado: "+this.fecha_Prestamo+"\n" +
-                "Fecha para ser devuelto: "+this.fecha_Devolver+"\n" +
-                "Libro pedido: "+this.libroPedido+"\n" +
-                "¿Quien se lo llevo?: "+this.socioPrestado;
+        return "Fecha que fue prestado: " + this.fecha_Prestamo + "\n" +
+                "Fecha para ser devuelto: " + fecha_Devolver + "\n" +
+                "Libro pedido: " + libroPedido + "\n" +
+                "Socio nombre: " + socioPrestado;
     }
 
     @Override

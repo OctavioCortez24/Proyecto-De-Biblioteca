@@ -9,15 +9,17 @@ public class Libro {
     private String categoria;
 
 
-    public Libro(){
+    public Libro() {
 
     }
-    public Libro(String nombre,String nombreDelAutor,String categoria,boolean disponibilidad){
-        this.tituloDeLib=nombre;
-        this.nombreDelAutor=nombreDelAutor;
-        this.categoria=categoria;
-        this.disponibilidad=disponibilidad;
+
+    public Libro(String nombre, String nombreDelAutor, String categoria, boolean disponibilidad) {
+        this.tituloDeLib = nombre;
+        this.nombreDelAutor = nombreDelAutor;
+        this.categoria = categoria;
+        this.disponibilidad = disponibilidad;
     }
+
     public String getNombreDeLib() {
         return tituloDeLib;
     }
@@ -52,10 +54,11 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Titulo: "+tituloDeLib;
+        return "Titulo: " + tituloDeLib;
     }
-    public String toString(char ceparador){
-        return "Titulo: "+tituloDeLib+ceparador+" Autor: "+nombreDelAutor+ceparador+" Categoria: "+categoria+ceparador+" Disponibilidad: "+disponibilidad;
+
+    public String toString(char ceparador) {
+        return "Titulo: " + tituloDeLib + ceparador + " Autor: " + nombreDelAutor + ceparador + " Categoria: " + categoria + ceparador + " Disponibilidad: " + disponibilidad;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Vista {
 
         Scanner Leer = new Scanner(System.in);
         boolean bandera = false;
-        boolean disponibleLib=false;
+        boolean disponibleLib = false;
 
         System.out.print("Ingrese el nombre del libro: ");
         Scanner LeerInt = new Scanner(System.in);
@@ -43,7 +43,7 @@ public class Vista {
         String autorLib = Leer.nextLine();
 
         System.out.print("Ingrese su categoria:");
-        String categoriaLib=Leer.nextLine();
+        String categoriaLib = Leer.nextLine();
 
         while (bandera != true) {
             System.out.println("Ingrese su disponibiliada: ");
@@ -51,10 +51,10 @@ public class Vista {
             System.out.println("[2]--> No Disponible");
             int eleccion = LeerInt.nextInt();
             if (eleccion == 1) {
-                disponibleLib=true;
+                disponibleLib = true;
                 bandera = true;
             } else if (eleccion == 2) {
-                disponibleLib=false;
+                disponibleLib = false;
                 bandera = true;
             } else {
                 System.out.println("------------------------------------");
@@ -62,17 +62,18 @@ public class Vista {
                 System.out.println("------------------------------------");
             }
         }
-        Libro libro = new Libro(nombLib,autorLib,categoriaLib,disponibleLib);
+        Libro libro = new Libro(nombLib, autorLib, categoriaLib, disponibleLib);
         return libro;
     }
-    public static Libro borrarLibro(ArrayList<Libro>Libros){
-        Scanner leerNumer=new Scanner(System.in);
+
+    public static Libro borrarLibro(ArrayList<Libro> Libros) {
+        Scanner leerNumer = new Scanner(System.in);
         System.out.println("Borrar Libros");
         System.out.println("Seleccione el numero del Lbro:");
-        for (int i=0;i<Libros.size();i++){
-            System.out.println("["+i+"]--> "+Libros.get(i));
+        for (int i = 0; i < Libros.size(); i++) {
+            System.out.println("[" + i + "]--> " + Libros.get(i));
         }
-        int numerLibro= leerNumer.nextInt();
+        int numerLibro = leerNumer.nextInt();
         return Libros.get(numerLibro);
     }
 
@@ -93,35 +94,35 @@ public class Vista {
 
     }
 
-    public static Pedido crearPedido(ArrayList<Libro>Libros,ArrayList<Socio>Socios){
-        Scanner leerNumer=new Scanner(System.in);
+    public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {
+        Scanner leerNumer = new Scanner(System.in);
         System.out.println("Registrar un pedido");
 
-        Pedido pedido=new Pedido();
+        Pedido pedido = new Pedido();
 
-        Date prestamoHoy=new Date();
+        Date prestamoHoy = new Date();
         pedido.setFecha_Prestamo(prestamoHoy);
-        pedido.setFecha_Devolver(prestamoHoy,15);
+        pedido.setFecha_Devolver(prestamoHoy, 15);
 
         System.out.println("Seleccione el libro:");
-        for (int i=0;i<Libros.size();i++){
+        for (int i = 0; i < Libros.size(); i++) {
 
-            if (Libros.get(i).getDisponibilidad()==true){
-                System.out.println("["+i+"]-->"+Libros.get(i));
+            if (Libros.get(i).getDisponibilidad() == true) {
+                System.out.println("[" + i + "]-->" + Libros.get(i));
             }
         }
-        int elecionLib= leerNumer.nextInt();
+        int elecionLib = leerNumer.nextInt();
         Libros.get(elecionLib).setDisponibilidad(false);
-        Libro libroElegido=Libros.get(elecionLib);
+        Libro libroElegido = Libros.get(elecionLib);
         pedido.setLibroPedido(libroElegido);
 
         System.out.println("Selecione el socio:");
-        for (int i=0;i<Socios.size();i++){
-            System.out.println("["+i+"]"+Socios.get(i));
+        for (int i = 0; i < Socios.size(); i++) {
+            System.out.println("[" + i + "]" + Socios.get(i));
         }
-        int elecionSoci=leerNumer.nextInt();
+        int elecionSoci = leerNumer.nextInt();
 
-        Socio elecionSocio=Socios.get(elecionSoci);
+        Socio elecionSocio = Socios.get(elecionSoci);
         pedido.setSocioPrestado(elecionSocio);
 
         return pedido;

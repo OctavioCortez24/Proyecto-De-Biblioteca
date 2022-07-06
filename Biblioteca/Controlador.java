@@ -16,8 +16,8 @@ public class Controlador {
         Filial1.anadirLibro(l2);
         //-----------------------------------------------------------------
 
-        ArrayList<Libro>LibrosFilial=Filial1.getLibros();
-        ArrayList<Socio>SociosFilial=Filial1.getSocios();
+        ArrayList<Libro> LibrosFilial = Filial1.getLibros();
+        ArrayList<Socio> SociosFilial = Filial1.getSocios();
         //Arriba lo que hago es traerme los arrays Libros y Socios de el objeto Filial1, para poder ocuparlo abajo
 
         int eleccion = 0;
@@ -34,7 +34,7 @@ public class Controlador {
             } else if (eleccion == 4) {
                 Filial1.mostrarLibro();
             } else if (eleccion == 5) {
-                Libro libro=Vista.borrarLibro(LibrosFilial);
+                Libro libro = Vista.borrarLibro(LibrosFilial);
                 Filial1.borrarLibro(libro);
             } else if (eleccion == 6) {
                 Pedido p = Vista.crearPedido(LibrosFilial, SociosFilial);

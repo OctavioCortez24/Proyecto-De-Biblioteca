@@ -54,8 +54,8 @@ public class Socio {
         return nombre + " " + apellido + " " + DNI;
     }
 
-    public String toString(char ceparador){
-        return nombre+ceparador+apellido+ceparador+DNI;
+    public String toString(char ceparador) {
+        return nombre + ceparador + apellido + ceparador + DNI;
     }
 
     @Override
