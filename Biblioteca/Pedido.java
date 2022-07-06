@@ -40,13 +40,8 @@ public class Pedido {
         return fecha_Devolver;
     }
 
-    public void setFecha_Devolver(Date fecha_Devolver, int dias) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(fecha_Prestamo);
-        calendar.add(Calendar.DAY_OF_YEAR, dias);
-
-
-        this.fecha_Devolver = calendar.getTime();
+    public void setFecha_Devolver(Date fecha_Devolver) {
+        this.fecha_Devolver = fecha_Devolver;
     }
 
     public Libro getLibroPedido() {

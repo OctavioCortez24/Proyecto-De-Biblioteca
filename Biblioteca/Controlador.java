@@ -36,11 +36,13 @@ public class Controlador {
             } else if (eleccion == 5) {
                 Libro libro = Vista.borrarLibro(LibrosFilial);
                 Filial1.borrarLibro(libro);
-            } else if (eleccion == 6) {
+            } else if(eleccion==6){
+
+            }else if (eleccion == 7) {
                 Pedido p = Vista.crearPedido(LibrosFilial, SociosFilial);
                 Filial1.anadirPedido(p);
 
-            } else if (eleccion == 7) {
+            } else if (eleccion == 8) {
                 Filial1.mostrarPedidos();
             }
 

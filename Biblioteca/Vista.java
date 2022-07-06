@@ -2,6 +2,7 @@ package Biblioteca;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -21,8 +22,9 @@ public class Vista {
         System.out.println("[3]--> Ver socios");
         System.out.println("[4]--> Ver libros");
         System.out.println("[5]--> Eliminar Libro");
-        System.out.println("[6]-->Pedir un libro");
-        System.out.println("[7]-->Mostrar Pedidos");
+        System.out.println("[6]--> Eliminar Socio");
+        System.out.println("[7]-->Pedir un libro");
+        System.out.println("[8]-->Mostrar Pedidos");
         System.out.print("Ingrese su opción: ");
         eleccion = Leer.nextInt();
         System.out.println("----------------------------------");
@@ -97,16 +99,16 @@ public class Vista {
     public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Registrar un pedido");
-
-        Pedido pedido = new Pedido();
-
-        Date prestamoHoy = new Date();
-        pedido.setFecha_Prestamo(prestamoHoy);
-        pedido.setFecha_Devolver(prestamoHoy, 15);
+        //Devuelve la feche de hoy
+        Date prestamoHoy = new Date();//Fecha en la cual se realiza el pedido
+        //Calcula cuando debe devolver el libro
+        Calendar calendar = Calendar.getInstance();//Creo un objeto Calendar
+        calendar.setTime(prestamoHoy);//Le mando a ese objeto la fecha en la cual se realiza el pedido
+        calendar.add(Calendar.DAY_OF_YEAR, 15);//Indico cuantos dias va a tener a poder tener el libro en este caso son 15 dias
+        Date fechaDevolverLibro = calendar.getTime();// Fecha en la cual debe devolver el libro
 
         System.out.println("Seleccione el libro:");
         for (int i = 0; i < Libros.size(); i++) {
-
             if (Libros.get(i).getDisponibilidad() == true) {
                 System.out.println("[" + i + "]-->" + Libros.get(i));
             }
@@ -114,17 +116,15 @@ public class Vista {
         int elecionLib = leerNumer.nextInt();
         Libros.get(elecionLib).setDisponibilidad(false);
         Libro libroElegido = Libros.get(elecionLib);
-        pedido.setLibroPedido(libroElegido);
 
         System.out.println("Selecione el socio:");
         for (int i = 0; i < Socios.size(); i++) {
             System.out.println("[" + i + "]" + Socios.get(i));
         }
         int elecionSoci = leerNumer.nextInt();
+        Socio socio = Socios.get(elecionSoci);
 
-        Socio elecionSocio = Socios.get(elecionSoci);
-        pedido.setSocioPrestado(elecionSocio);
-
+        Pedido pedido = new Pedido(prestamoHoy,fechaDevolverLibro , libroElegido, socio);
         return pedido;
     }
 }
