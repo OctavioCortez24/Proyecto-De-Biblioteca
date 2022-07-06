@@ -1,22 +1,22 @@
 package Biblioteca;
+
 import java.util.*;
+
 public class Controlador {
     public static void main(String[] args) {
-        ArrayList<Libro>Libros=new ArrayList<>();
-        ArrayList<Socio>Socios=new ArrayList<>();
-        ArrayList<Pedido>Pedidos=new ArrayList<>();
+        Filial Filial1 = new Filial("Biblioteca 1");
         //Codigo para no ingresar contastemente Socios y libros
-        Socio s=new Socio("Octavio","Cortez", 43213252);
-        Socio s2=new Socio("Leandro","Cortez", 45876507);
-        Socios.add(s);
-        Socios.add(s2);
-        Libro l=new Libro("El principito","Antoine de Saint-Exupéry","Fabula",true);
-        Libro l2=new Libro("La odisea","Homero","Poesia",true);
-        Libros.add(l);
-        Libros.add(l2);
+        Socio s = new Socio("Octavio", "Cortez", 43213252);
+        Socio s2 = new Socio("Leandro", "Cortez", 45876507);
+        Filial1.anadirSocio(s);
+        Filial1.anadirSocio(s2);
+        Libro l = new Libro("El principito", "Antoine de Saint-Exupéry", "Fabula", true);
+        Libro l2 = new Libro("La odisea", "Homero", "Poesia", true);
+        Filial1.anadirLibro(l);
+        Filial1.anadirLibro(l2);
         //-----------------------------------------------------------------
-        Filial Filial1= new Filial("Biblioteca 1");
-        int eleccion=0;
+
+        int eleccion = 0;
         do {
             eleccion = Vista.menu();
             if (eleccion == 1) {
@@ -29,14 +29,16 @@ public class Controlador {
                 Filial1.mostrarSocio();
             } else if (eleccion == 4) {
                 Filial1.mostrarLibro();
-            }else if(eleccion==5){
+            } else if (eleccion == 5) {
 
-              //Teminar----------
-            }else if(eleccion==6){
-                Pedido p=Vista.crearPedido(Libros,Socios);
-                Pedidos.add(p);
-            }else if(eleccion==7){
-              Filial1.mostrarPedidos();
+                //Teminar----------
+                //Eliminar libro
+            } else if (eleccion == 6) {
+                Pedido p = Vista.crearPedido(Filial1.getLibros(), Filial1.getSocios());
+                Filial1.anadirPedido(p);
+
+            } else if (eleccion == 7) {
+                Filial1.mostrarPedidos();
             }
 
         } while (eleccion != 0);
