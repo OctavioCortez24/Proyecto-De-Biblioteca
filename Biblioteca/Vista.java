@@ -1,6 +1,7 @@
 package Biblioteca;
 
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -99,13 +100,8 @@ public class Vista {
     public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Registrar un pedido");
-        //Devuelve la feche de hoy
-        Date prestamoHoy = new Date();//Fecha en la cual se realiza el pedido
-        //Calcula cuando debe devolver el libro
-        Calendar calendar = Calendar.getInstance();//Creo un objeto Calendar
-        calendar.setTime(prestamoHoy);//Le mando a ese objeto la fecha en la cual se realiza el pedido
-        calendar.add(Calendar.DAY_OF_YEAR, 15);//Indico cuantos dias va a tener a poder tener el libro en este caso son 15 dias
-        Date fechaDevolverLibro = calendar.getTime();// Fecha en la cual debe devolver el libro
+        LocalDate prestamoHoy=LocalDate.now();//Fecha de hoy
+        LocalDate fechaDevolverLibro=LocalDate.now().plusDays(15);//Fecha de hoy mas 15 dias
 
         System.out.println("Seleccione el libro:");
         for (int i = 0; i < Libros.size(); i++) {

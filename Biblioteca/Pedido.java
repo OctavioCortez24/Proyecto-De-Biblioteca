@@ -1,11 +1,13 @@
 package Biblioteca;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
+
 public class Pedido {
-    private Date fecha_Prestamo;
-    private Date fecha_Devolver;
+    private LocalDate fecha_Prestamo;
+    private LocalDate fecha_Devolver;
     private Libro libroPedido;
     private Socio socioPrestado;
 
@@ -13,7 +15,7 @@ public class Pedido {
 
     }
 
-    public Pedido(Date prestamo, Date fecha_Devolver, Libro libroPedido, Socio socioPrestado) {
+    public Pedido(LocalDate prestamo, LocalDate fecha_Devolver, Libro libroPedido, Socio socioPrestado) {
         this.fecha_Prestamo = prestamo;
         this.fecha_Devolver = fecha_Devolver;
         this.libroPedido = libroPedido;
@@ -28,19 +30,19 @@ public class Pedido {
         this.socioPrestado = socioPrestado;
     }
 
-    public Date getFecha_Prestamo() {
+    public LocalDate getFecha_Prestamo() {
         return fecha_Prestamo;
     }
 
-    public void setFecha_Prestamo(Date fecha_Prestamo) {
+    public void setFecha_Prestamo(LocalDate fecha_Prestamo) {
         this.fecha_Prestamo = fecha_Prestamo;
     }
 
-    public Date getFecha_Devolver() {
+    public LocalDate getFecha_Devolver() {
         return fecha_Devolver;
     }
 
-    public void setFecha_Devolver(Date fecha_Devolver) {
+    public void setFecha_Devolver(LocalDate fecha_Devolver) {
         this.fecha_Devolver = fecha_Devolver;
     }
 
@@ -54,7 +56,8 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Fecha que fue prestado: " + this.fecha_Prestamo + "\n" +
+
+        return "Fecha que fue prestado: " + fecha_Prestamo + "\n" +
                 "Fecha para ser devuelto: " + fecha_Devolver + "\n" +
                 "Libro pedido: " + libroPedido + "\n" +
                 "Socio nombre: " + socioPrestado;
