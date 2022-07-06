@@ -54,11 +54,12 @@ public class Libro {
 
     @Override
     public String toString() {
+        //"Titulo: " + tituloDeLib + " Autor: " + nombreDelAutor +" Categoria: " + categoria +" Disponibilidad: " + disponibilidad;
         return "Titulo: " + tituloDeLib;
     }
 
     public String toString(char ceparador) {
-        return "Titulo: " + tituloDeLib + ceparador + " Autor: " + nombreDelAutor + ceparador + " Categoria: " + categoria + ceparador + " Disponibilidad: " + disponibilidad;
+        return tituloDeLib + ceparador + nombreDelAutor + ceparador + categoria + ceparador + disponibilidad;
     }
 
     @Override

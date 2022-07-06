@@ -63,6 +63,10 @@ public class Pedido {
                 "Socio nombre: " + socioPrestado;
     }
 
+    public String toString(String ceparador){
+        return fecha_Prestamo+ceparador+fecha_Devolver+ceparador+libroPedido+ceparador+socioPrestado;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
