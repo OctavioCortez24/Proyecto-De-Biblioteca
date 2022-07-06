@@ -37,13 +37,17 @@ public class Controlador {
                 Libro libro = Vista.borrarLibro(LibrosFilial);
                 Filial1.borrarLibro(libro);
             } else if(eleccion==6){
-
+                Socio socio=Vista.borrarSocio(SociosFilial);
+                Filial1.borrarSocio(socio);
             }else if (eleccion == 7) {
                 Pedido p = Vista.crearPedido(LibrosFilial, SociosFilial);
                 Filial1.anadirPedido(p);
 
             } else if (eleccion == 8) {
                 Filial1.mostrarPedidos();
+            }else if(eleccion==9){
+                int libro=Vista.devolverLibro(LibrosFilial);
+                Filial1.devolverLibro(libro);
             }
 
         } while (eleccion != 0);

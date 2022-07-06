@@ -24,8 +24,9 @@ public class Vista {
         System.out.println("[4]--> Ver libros");
         System.out.println("[5]--> Eliminar Libro");
         System.out.println("[6]--> Eliminar Socio");
-        System.out.println("[7]-->Pedir un libro");
-        System.out.println("[8]-->Mostrar Pedidos");
+        System.out.println("[7]--> Pedir un libro");
+        System.out.println("[8]--> Mostrar Pedidos");
+        System.out.println("[9]--> Devolver libro");
         System.out.print("Ingrese su opción: ");
         eleccion = Leer.nextInt();
         System.out.println("----------------------------------");
@@ -78,6 +79,29 @@ public class Vista {
         }
         int numerLibro = leerNumer.nextInt();
         return Libros.get(numerLibro);
+    }
+    public static int devolverLibro(ArrayList<Libro>Libros){
+        Scanner leerNumer = new Scanner(System.in);
+        System.out.println("Devolver Libros");
+        System.out.println("Seleccione el numero del Lbro:");
+        for (int i = 0; i < Libros.size(); i++) {
+            if (Libros.get(i).getDisponibilidad()==false){
+                System.out.println("[" + i + "]--> " + Libros.get(i));
+            }
+        }
+        int numerLibro = leerNumer.nextInt();
+
+        return numerLibro;
+    }
+    public static Socio borrarSocio(ArrayList<Socio>Socios){
+        Scanner leerNumer=new Scanner(System.in);
+        System.out.println("Borrar socios");
+        System.out.println("Seleccione el libro:");
+        for (int i=0;i<Socios.size();i++){
+            System.out.println("["+i+"]--> "+Socios.get(i));
+        }
+        int numerSocio= leerNumer.nextInt();
+        return Socios.get(numerSocio);
     }
 
     public static Socio crearSocio() {

@@ -51,6 +51,9 @@ public class Filial {
     public void anadirLibro(Libro l) {
         Libros.add(l);
     }
+    public void devolverLibro(int l){
+        Libros.get(l).setDisponibilidad(true);
+    }
 
     public void anadirSocio(Socio s) {
         Socios.add(s);
@@ -82,7 +85,9 @@ public class Filial {
 
     public void mostrarPedidos() {
         for (int i = 0; i < Pedidos.size(); i++) {
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
             System.out.println(Pedidos.get(i));
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         }
     }
 
