@@ -55,7 +55,7 @@ public class Libro {
         return "Titulo: "+tituloDeLib;
     }
     public String toString(char ceparador){
-        return "Titulo: "+tituloDeLib+ceparador+" Autor: "+this.nombreDelAutor+ceparador+" Categoria"+categoria+ceparador+" Disponibilidad: "+disponibilidad;
+        return "Titulo: "+tituloDeLib+ceparador+" Autor: "+nombreDelAutor+ceparador+" Categoria: "+categoria+ceparador+" Disponibilidad: "+disponibilidad;
     }
 
     @Override

@@ -65,7 +65,7 @@ public class Vista {
         Libro libro = new Libro(nombLib,autorLib,categoriaLib,disponibleLib);
         return libro;
     }
-    public static void borrarLibro(ArrayList<Libro>Libros){
+    public static Libro borrarLibro(ArrayList<Libro>Libros){
         Scanner leerNumer=new Scanner(System.in);
         System.out.println("Borrar Libros");
         System.out.println("Seleccione el numero del Lbro:");
@@ -73,7 +73,7 @@ public class Vista {
             System.out.println("["+i+"]--> "+Libros.get(i));
         }
         int numerLibro= leerNumer.nextInt();
-        Libros.remove(numerLibro);
+        return Libros.get(numerLibro);
     }
 
     public static Socio crearSocio() {
