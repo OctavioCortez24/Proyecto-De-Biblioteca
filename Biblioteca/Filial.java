@@ -95,4 +95,13 @@ public class Filial {
     public String toString() {
         return nombreFilial;
     }
+
+    public  String toString(String barita){
+        String socios="";
+
+        for (int i=0;i<Socios.size();i++){
+           socios= socios+barita+Socios.get(i).toString('#');
+        }
+        return socios;
+    }
 }
