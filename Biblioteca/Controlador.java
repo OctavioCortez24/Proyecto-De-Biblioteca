@@ -1,7 +1,11 @@
 package Biblioteca;
 
 import java.util.*;
+
 public class Controlador {
+    public Controlador() {
+    }
+
     public static void main(String[] args) {
         Filial Filial1 = new Filial("Biblioteca 1");
         //Codigo para no ingresar contastemente Socios y libros
@@ -19,7 +23,20 @@ public class Controlador {
         ArrayList<Socio> SociosFilial = Filial1.getSocios();
         //Arriba lo que hago es traerme los arrays Libros y Socios de el objeto Filial1, para poder ocuparlo abajo
 
+
+        //-------------------------------
+        /*String paquete = GestorArchivos.cargar("datoAfiliado.txt");
+        System.out.println(paquete);
+        String separador2 = "#";
+        ArrayList<String> datosAfiliado = GestorArchivos.desempaquetador(paquete, separador2);
+
+        for (int j = 0; j < datosAfiliado.size(); ++j) {
+            System.out.println("--> " + (String) datosAfiliado.get(j));
+        }*/
+        //--------------------------------------
+
         int eleccion = 0;
+        //Menu
         do {
             eleccion = Vista.menu();
             if (eleccion == 1) {
@@ -35,19 +52,20 @@ public class Controlador {
             } else if (eleccion == 5) {
                 Libro libro = Vista.borrarLibro(LibrosFilial);
                 Filial1.borrarLibro(libro);
-            } else if(eleccion==6){
-                Socio socio=Vista.borrarSocio(SociosFilial);
+            } else if (eleccion == 6) {
+                Socio socio = Vista.borrarSocio(SociosFilial);
                 Filial1.borrarSocio(socio);
-            }else if (eleccion == 7) {
+            } else if (eleccion == 7) {
                 Pedido p = Vista.crearPedido(LibrosFilial, SociosFilial);
                 Filial1.anadirPedido(p);
 
             } else if (eleccion == 8) {
                 Filial1.mostrarPedidos();
-            }else if(eleccion==9){
-                int libro=Vista.devolverLibro(LibrosFilial);
+            } else if (eleccion == 9) {
+                int libro = Vista.devolverLibro(LibrosFilial);
                 Filial1.devolverLibro(libro);
             }
+
 
         } while (eleccion != 0);
     }

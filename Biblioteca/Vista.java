@@ -2,10 +2,7 @@ package Biblioteca;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.Level;
 
 public class Vista {
@@ -13,7 +10,7 @@ public class Vista {
 
     public static int menu() {
         Scanner Leer = new Scanner(System.in);
-        int eleccion;
+        int eleccion = 0;
         System.out.println("Programa de la biblioteca");
         System.out.println("----------------------------------");
         System.out.println("Seleccione su opción");
@@ -28,27 +25,37 @@ public class Vista {
         System.out.println("[8]--> Mostrar Pedidos");
         System.out.println("[9]--> Devolver libro");
         System.out.print("Ingrese su opción: ");
-        eleccion = Leer.nextInt();
+        try {
+            eleccion = Leer.nextInt();
+        } catch (Exception e) {
+            System.out.println("No debes ingresar letras o simbolos");
+            eleccion = menu();
+        }
+
         System.out.println("----------------------------------");
         return eleccion;
+
     }
 
     public static Libro crearLibro() {
 
         Scanner Leer = new Scanner(System.in);
+        Scanner LeerInt = new Scanner(System.in);
         boolean bandera = false;
         boolean disponibleLib = false;
+        String autorLib = "";
+        String categoriaLib = "";
+        String nombLib = "";
+
 
         System.out.print("Ingrese el nombre del libro: ");
-        Scanner LeerInt = new Scanner(System.in);
-        String nombLib = Leer.nextLine();
+        nombLib = Leer.nextLine();
 
         System.out.print("Ingrese su Autor: ");
-        String autorLib = Leer.nextLine();
+        autorLib = Leer.nextLine();
 
         System.out.print("Ingrese su categoria:");
-        String categoriaLib = Leer.nextLine();
-
+        categoriaLib = Leer.nextLine();
         while (bandera != true) {
             System.out.println("Ingrese su disponibiliada: ");
             System.out.println("[1]--> Disponible");
@@ -68,40 +75,73 @@ public class Vista {
         }
         Libro libro = new Libro(nombLib, autorLib, categoriaLib, disponibleLib);
         return libro;
+
     }
 
     public static Libro borrarLibro(ArrayList<Libro> Libros) {
+        boolean bandera = false;
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Borrar Libros");
         System.out.println("Seleccione el numero del Lbro:");
         for (int i = 0; i < Libros.size(); i++) {
             System.out.println("[" + i + "]--> " + Libros.get(i));
         }
-        int numerLibro = leerNumer.nextInt();
-        return Libros.get(numerLibro);
+        int numerLibro = 0;
+        try {
+            numerLibro = leerNumer.nextInt();
+
+        } catch (InputMismatchException e) {
+            System.out.println("No debes ingresar letras o simbolos");
+            bandera = true;
+        }
+        if (bandera) {
+            return null;
+        } else {
+            return Libros.get(numerLibro);
+        }
     }
-    public static int devolverLibro(ArrayList<Libro>Libros){
+
+    public static int devolverLibro(ArrayList<Libro> Libros) {
+        int numerLibro;
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Devolver Libros");
         System.out.println("Seleccione el numero del Lbro:");
         for (int i = 0; i < Libros.size(); i++) {
-            if (Libros.get(i).getDisponibilidad()==false){
+            if (Libros.get(i).getDisponibilidad() == false) {
                 System.out.println("[" + i + "]--> " + Libros.get(i));
             }
         }
-        int numerLibro = leerNumer.nextInt();
+        try {
+            numerLibro = leerNumer.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Debe ingresar un numero");
+            numerLibro = devolverLibro(Libros);
+        }
 
         return numerLibro;
     }
-    public static Socio borrarSocio(ArrayList<Socio>Socios){
-        Scanner leerNumer=new Scanner(System.in);
+
+    public static Socio borrarSocio(ArrayList<Socio> Socios) {
+        boolean fallo = false;
+        int numerSocio = 0;
+        Scanner leerNumer = new Scanner(System.in);
         System.out.println("Borrar socios");
         System.out.println("Seleccione el libro:");
-        for (int i=0;i<Socios.size();i++){
-            System.out.println("["+i+"]--> "+Socios.get(i));
+        for (int i = 0; i < Socios.size(); i++) {
+            System.out.println("[" + i + "]--> " + Socios.get(i));
         }
-        int numerSocio= leerNumer.nextInt();
-        return Socios.get(numerSocio);
+        try {
+            numerSocio = leerNumer.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Debe ingresar un numero");
+            fallo = true;
+        }
+
+        if (fallo) {
+            return null;
+        } else {
+            return Socios.get(numerSocio);
+        }
     }
 
     public static Socio crearSocio() {
@@ -124,8 +164,8 @@ public class Vista {
     public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Registrar un pedido");
-        LocalDate prestamoHoy=LocalDate.now();//Fecha de hoy
-        LocalDate fechaDevolverLibro=LocalDate.now().plusDays(15);//Fecha de hoy mas 15 dias
+        LocalDate prestamoHoy = LocalDate.now();//Fecha de hoy
+        LocalDate fechaDevolverLibro = LocalDate.now().plusDays(15);//Fecha de hoy mas 15 dias
 
         System.out.println("Seleccione el libro:");
         for (int i = 0; i < Libros.size(); i++) {
@@ -144,7 +184,7 @@ public class Vista {
         int elecionSoci = leerNumer.nextInt();
         Socio socio = Socios.get(elecionSoci);
 
-        Pedido pedido = new Pedido(prestamoHoy,fechaDevolverLibro , libroElegido, socio);
+        Pedido pedido = new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
         return pedido;
     }
 }
