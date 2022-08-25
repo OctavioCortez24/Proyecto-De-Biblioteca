@@ -8,36 +8,19 @@ public class Controlador {
 
     public static void main(String[] args) {
         Filial Filial1 = new Filial("Biblioteca 1");
-        //Codigo para no ingresar contastemente Socios y libros
-        Socio s = new Socio("Octavio", "Cortez", 43213252);
-        Socio s2 = new Socio("Leandro", "Cortez", 45876507);
-        Filial1.anadirSocio(s);
-        Filial1.anadirSocio(s2);
-        Libro l = new Libro("El principito", "Antoine de Saint-Exupéry", "Fabula", true);
-        Libro l2 = new Libro("La odisea", "Homero", "Poesia", true);
-        Filial1.anadirLibro(l);
-        Filial1.anadirLibro(l2);
-        //-----------------------------------------------------------------
-
         ArrayList<Libro> LibrosFilial = Filial1.getLibros();
         ArrayList<Socio> SociosFilial = Filial1.getSocios();
+
         //Arriba lo que hago es traerme los arrays Libros y Socios de el objeto Filial1, para poder ocuparlo abajo
 
-
-        //-------------------------------
-        /*String paquete = GestorArchivos.cargar("datoAfiliado.txt");
-        System.out.println(paquete);
-        String separador2 = "#";
-        ArrayList<String> datosAfiliado = GestorArchivos.desempaquetador(paquete, separador2);
-
-        for (int j = 0; j < datosAfiliado.size(); ++j) {
-            System.out.println("--> " + (String) datosAfiliado.get(j));
-        }*/
-        //--------------------------------------
-
+        ArrayList<String>SociosString=new ArrayList<>();
+        for (int i=0;i<SociosFilial.size();i++){
+            SociosString.add(SociosFilial.get(i).toString());
+        }
         int eleccion = 0;
         //Menu
         do {
+            GestorArchivos.guardarArray(SociosString,"GuardarSocios.txt");
             eleccion = Vista.menu();
             if (eleccion == 1) {
                 Socio socio1 = Vista.crearSocio();

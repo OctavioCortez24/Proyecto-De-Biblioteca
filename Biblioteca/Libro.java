@@ -58,7 +58,7 @@ public class Libro {
         return "Titulo: " + tituloDeLib;
     }
 
-    public String toString(char ceparador) {
+    public String toString(String ceparador) {
         return tituloDeLib + ceparador + nombreDelAutor + ceparador + categoria + ceparador + disponibilidad;
     }
 

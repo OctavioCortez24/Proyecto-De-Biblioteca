@@ -26,6 +26,7 @@ public class GestorArchivos {
             salidaArchivo = new BufferedWriter(new FileWriter(
                     "C:/MisFicheros/"+nombre));
 
+
             salidaArchivo.write(data);
 
         } catch (IOException ex) {
@@ -72,6 +73,7 @@ public class GestorArchivos {
             paquete = paquete+empa.get(i)+separador;
         }
         paquete = paquete+empa.get(empa.size()-1);
+
         return paquete;
     }
 

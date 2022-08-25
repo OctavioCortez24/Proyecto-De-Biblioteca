@@ -79,7 +79,7 @@ public class Filial {
 
     public void mostrarLibro() {
         for (int i = 0; i < Libros.size(); i++) {
-            System.out.println(Libros.get(i).toString('#'));
+            System.out.println(Libros.get(i).toString("#"));
         }
     }
 
@@ -96,12 +96,20 @@ public class Filial {
         return nombreFilial;
     }
 
-    public  String toString(String barita){
+    public  String toStringSocios(String barita){
         String socios="";
 
         for (int i=0;i<Socios.size();i++){
-           socios= socios+barita+Socios.get(i).toString('#');
+           socios= socios+Socios.get(i).toString("#")+barita;
         }
         return socios;
+    }
+    public String toStringLibros(String barita){
+        String libros="";
+
+        for (int i=0;i<Libros.size();i++){
+            libros= libros+Libros.get(i).toString("#")+barita;
+        }
+        return libros;
     }
 }

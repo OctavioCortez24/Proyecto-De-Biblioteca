@@ -187,4 +187,16 @@ public class Vista {
         Pedido pedido = new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
         return pedido;
     }
+
+    public static Socio recuperarSocio(String cadena){
+        Socio socio;
+
+        String [] vector=cadena.split(" ");
+        String nombre=vector[0];
+        String apellido=vector[1];
+        String dniString=vector[2];
+
+        int DNI=Integer.parseInt(dniString);
+        return new Socio(nombre,apellido,DNI);
+    }
 }
