@@ -1,5 +1,6 @@
 package Biblioteca;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Controlador {
@@ -8,19 +9,21 @@ public class Controlador {
 
     public static void main(String[] args) {
         Filial Filial1 = new Filial("Biblioteca 1");
-        ArrayList<Libro> LibrosFilial = Filial1.getLibros();
-        ArrayList<Socio> SociosFilial = Filial1.getSocios();
+        ArrayList<Libro> LibrosFilial = Filial1.getLibros();//Creo el array de Libros
+        ArrayList<Socio> SociosFilial = Filial1.getSocios();//Creo el array de Socios
+        ArrayList<Pedido> PedidosFilial=Filial1.getPedidos();//Creo el array de Pedidos
+        ArrayList<String>SociosString;
+        ArrayList<String>LibrosString;
+        ArrayList<String>PedidosString;
 
-        //Arriba lo que hago es traerme los arrays Libros y Socios de el objeto Filial1, para poder ocuparlo abajo
+        Vista.CargarArrays(SociosFilial,LibrosFilial,PedidosFilial);
 
-        ArrayList<String>SociosString=new ArrayList<>();
-        for (int i=0;i<SociosFilial.size();i++){
-            SociosString.add(SociosFilial.get(i).toString());
-        }
+
+
+
         int eleccion = 0;
         //Menu
         do {
-            GestorArchivos.guardarArray(SociosString,"GuardarSocios.txt");
             eleccion = Vista.menu();
             if (eleccion == 1) {
                 Socio socio1 = Vista.crearSocio();
@@ -49,7 +52,16 @@ public class Controlador {
                 Filial1.devolverLibro(libro);
             }
 
-
         } while (eleccion != 0);
+
+        //Guardo el array de Socios
+        SociosString=Vista.CopiarDatos(SociosFilial);
+        GestorArchivos.guardarArray(SociosString,"ArraySocios.txt");
+        //Guardo el array de libros
+        LibrosString=Vista.CopiarDatosLibros(LibrosFilial);
+        GestorArchivos.guardarArray(LibrosString,"ArrayLibros.txt");
+        //Guardo el array de pedidos
+        PedidosString=Vista.CopiarDatosPedidos(PedidosFilial);
+        GestorArchivos.guardarArray(PedidosString,"ArrayPedidos.txt");
     }
 }

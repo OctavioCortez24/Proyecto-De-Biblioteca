@@ -56,7 +56,17 @@ public class Filial {
     }
 
     public void anadirSocio(Socio s) {
-        Socios.add(s);
+        boolean bandera=false;
+        for (int i=0;i<Socios.size();i++){
+            if (Socios.get(i).equals(s)){
+                bandera=true;
+            }
+        }
+        if (!bandera){
+            Socios.add(s);
+
+        }
+
     }
 
     public void anadirPedido(Pedido p) {
@@ -112,4 +122,5 @@ public class Filial {
         }
         return libros;
     }
+
 }

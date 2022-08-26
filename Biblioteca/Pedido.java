@@ -64,7 +64,7 @@ public class Pedido {
     }
 
     public String toString(String ceparador){
-        return fecha_Prestamo+ceparador+fecha_Devolver+ceparador+libroPedido+ceparador+socioPrestado;
+        return fecha_Prestamo+ceparador+fecha_Devolver+ceparador+libroPedido.toString("%")+ceparador+socioPrestado.toString("%");
     }
 
     @Override

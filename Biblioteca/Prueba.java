@@ -29,7 +29,7 @@ public class Prueba {
 
         GestorArchivos.guardarArray(PruebaSociosStr,"ArraySocios.txt");//Guardo el array de los socios
 
-        */
+
         ArrayList<String> ArrayRecuperadoSoc=GestorArchivos.cargarArray("ArraySocios.txt");
 
         ArrayList<Socio>SociosRecuperados=new ArrayList<>();
@@ -37,6 +37,13 @@ public class Prueba {
         for (int i=0;i<ArrayRecuperadoSoc.size();i++){
             SociosRecuperados.add(Vista.recuperarSocio(ArrayRecuperadoSoc.get(i)));
             System.out.println(SociosRecuperados.get(i));
+        }*/
+
+        String Libros=GestorArchivos.cargar("ArrayLibros.txt");
+        System.out.println(Libros);
+        String []vector=Libros.split("#");
+        for (int i=0;i< vector.length;i++){
+            System.out.println(vector[i]);
         }
 
 
