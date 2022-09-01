@@ -147,16 +147,16 @@ public class Vista {
     public static Socio crearSocio() {
 
         Scanner Leer = new Scanner(System.in);
-
+        Scanner LeerNumer=new Scanner(System.in);
         System.out.println("Igrese su nombre");
         String nombre = Leer.nextLine();
         System.out.println("Ingrese su apellido:");
         String apellido = Leer.nextLine();
         System.out.println("Ingrese su DNI:");
-        int DNI = Leer.nextInt();
+        int DNI = LeerNumer.nextInt();
 
-        Socio s = new Socio(nombre, apellido, DNI);
-        return s;
+
+        return new Socio(nombre, apellido, DNI);
 
 
     }
@@ -223,52 +223,4 @@ public class Vista {
         return new Pedido(prestamo,devolver,LibroPedido,SocioP);
     }
 
-    public static ArrayList<String> CopiarDatos(ArrayList<Socio> arrayList) {
-        ArrayList<String> arrayRetorno = new ArrayList<>();
-        for (int i=0;i<arrayList.size();i++){
-            arrayRetorno.add(arrayList.get(i).toString("%"));
-        }
-
-        return arrayRetorno;
-    }
-    public static ArrayList<String> CopiarDatosLibros(ArrayList<Libro> arrayList) {
-        ArrayList<String> arrayRetorno = new ArrayList<>();
-
-        for (int i=0;i<arrayList.size();i++){
-            arrayRetorno.add(arrayList.get(i).toString("%"));
-        }
-
-        return arrayRetorno;
-    }
-    public static ArrayList<String> CopiarDatosPedidos(ArrayList<Pedido> arrayList) {
-        ArrayList<String> arrayRetorno = new ArrayList<>();
-
-        for (int i=0;i<arrayList.size();i++){
-            arrayRetorno.add(arrayList.get(i).toString("&"));
-        }
-
-        return arrayRetorno;
-    }
-
-    public static void CargarArrays(ArrayList<Socio>Socios,ArrayList<Libro>Libros,ArrayList<Pedido>Pedidos){
-        //Cargo el array Socio-------------
-        ArrayList<String> SociosCargados=GestorArchivos.cargarArray("ArraySocios.txt");
-
-        for (int i=0;i<SociosCargados.size();i++){
-            Socio socio=Vista.recuperarSocio(SociosCargados.get(i));
-            Socios.add(socio);
-        }
-        //-----------------------------
-
-        ArrayList<String>LibrosCargados=GestorArchivos.cargarArray("ArrayLibros.txt");
-        for (int i=0;i<LibrosCargados.size();i++){
-            Libro libro=Vista.recuperarLibro(LibrosCargados.get(i));
-            Libros.add(libro);
-        }
-       ArrayList<String>PedidosCargados=GestorArchivos.cargarArray("ArrayPedidos.txt");
-        for (int i=0;i<PedidosCargados.size();i++){
-            Pedido pedido=Vista.recuperarPedido(PedidosCargados.get(i));
-            Pedidos.add(pedido);
-        }
-    }
 }

@@ -12,12 +12,8 @@ public class Controlador {
         ArrayList<Libro> LibrosFilial = Filial1.getLibros();//Creo el array de Libros
         ArrayList<Socio> SociosFilial = Filial1.getSocios();//Creo el array de Socios
         ArrayList<Pedido> PedidosFilial=Filial1.getPedidos();//Creo el array de Pedidos
-        ArrayList<String>SociosString;
-        ArrayList<String>LibrosString;
-        ArrayList<String>PedidosString;
 
-        Vista.CargarArrays(SociosFilial,LibrosFilial,PedidosFilial);
-
+        Modelo.CargarArrays(SociosFilial,LibrosFilial,PedidosFilial);
 
 
 
@@ -54,14 +50,34 @@ public class Controlador {
 
         } while (eleccion != 0);
 
-        //Guardo el array de Socios
-        SociosString=Vista.CopiarDatos(SociosFilial);
-        GestorArchivos.guardarArray(SociosString,"ArraySocios.txt");
-        //Guardo el array de libros
-        LibrosString=Vista.CopiarDatosLibros(LibrosFilial);
-        GestorArchivos.guardarArray(LibrosString,"ArrayLibros.txt");
-        //Guardo el array de pedidos
-        PedidosString=Vista.CopiarDatosPedidos(PedidosFilial);
-        GestorArchivos.guardarArray(PedidosString,"ArrayPedidos.txt");
+        Modelo.GuardarDatos(SociosFilial,LibrosFilial,PedidosFilial);
     }
+
+    public static ArrayList<String> CopiarDatos(ArrayList<Socio> arrayList) {
+        ArrayList<String> arrayRetorno = new ArrayList<>();
+        for (int i=0;i<arrayList.size();i++){
+            arrayRetorno.add(arrayList.get(i).toString("%"));
+        }
+
+        return arrayRetorno;
+    }
+    public static ArrayList<String> CopiarDatosLibros(ArrayList<Libro> arrayList) {
+        ArrayList<String> arrayRetorno = new ArrayList<>();
+
+        for (int i=0;i<arrayList.size();i++){
+            arrayRetorno.add(arrayList.get(i).toString("%"));
+        }
+
+        return arrayRetorno;
+    }
+    public static ArrayList<String> CopiarDatosPedidos(ArrayList<Pedido> arrayList) {
+        ArrayList<String> arrayRetorno = new ArrayList<>();
+
+        for (int i=0;i<arrayList.size();i++){
+            arrayRetorno.add(arrayList.get(i).toString("&"));
+        }
+
+        return arrayRetorno;
+    }
+
 }
