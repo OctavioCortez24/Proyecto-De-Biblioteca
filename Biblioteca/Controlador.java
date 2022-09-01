@@ -38,10 +38,12 @@ public class Controlador {
                 Libro libro = Vista.borrarLibro(LibrosFilial);
                 Filial1.borrarLibro(libro);
                 Modelo.GuardarLibros(LibrosFilial);
+                System.out.println("Libro borrado con exito");
             } else if (eleccion == 6) {
                 Socio socio = Vista.borrarSocio(SociosFilial);
                 Filial1.borrarSocio(socio);
                 Modelo.GuardarSocios(SociosFilial);
+                System.out.println("Socio borrado con exito");
             } else if (eleccion == 7) {
                 Pedido p = Vista.crearPedido(LibrosFilial, SociosFilial);
                 Filial1.anadirPedido(p);
