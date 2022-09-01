@@ -73,8 +73,8 @@ public class Vista {
                 System.out.println("------------------------------------");
             }
         }
-        Libro libro = new Libro(nombLib, autorLib, categoriaLib, disponibleLib);
-        return libro;
+
+        return new Libro(nombLib, autorLib, categoriaLib, disponibleLib);
 
     }
 
@@ -184,43 +184,8 @@ public class Vista {
         int elecionSoci = leerNumer.nextInt();
         Socio socio = Socios.get(elecionSoci);
 
-        Pedido pedido = new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
-        return pedido;
-    }
 
-    public static Socio recuperarSocio(String cadena) {
-        Socio socio;
-
-        String[] vector = cadena.split("%");
-        String nombre = vector[0];
-        String apellido = vector[1];
-        String dniString = vector[2];
-
-        int DNI = Integer.parseInt(dniString);
-        return new Socio(nombre, apellido, DNI);
-    }
-    public static Libro recuperarLibro(String cadena) {
-
-        String[] vector = cadena.split("%");
-        String nombre = vector[0];
-        String autor = vector[1];
-        String categoria = vector[2];
-        String disponibilidad=vector[3];
-        boolean disp=Boolean.parseBoolean(disponibilidad);
-        return new Libro(nombre, autor,categoria,disp);
-    }
-    public static Pedido recuperarPedido(String cadena){
-        String []vector=cadena.split("&");
-        String fechaPrestamo=vector[0];
-        LocalDate prestamo=LocalDate.parse(fechaPrestamo);
-        String fechaDevolver=vector[1];
-        LocalDate devolver=LocalDate.parse(fechaDevolver);
-        String libro=vector[2];
-        Libro LibroPedido=Vista.recuperarLibro(libro);
-        String socio=vector[3];
-        Socio SocioP=Vista.recuperarSocio(socio);
-
-        return new Pedido(prestamo,devolver,LibroPedido,SocioP);
+        return new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
     }
 
 }
