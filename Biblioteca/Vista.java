@@ -188,4 +188,27 @@ public class Vista {
         return new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
     }
 
+    public static void mostrarLosSocios(ArrayList arrayList){
+        for (int i = 0; i < arrayList.size(); i++) {
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
+            System.out.println(arrayList.get(i));
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
+        }
+
+    }
+
+    public static void mostrarLosLibros(ArrayList<Libro> Libros){
+
+        for (int i = 0; i < Libros.size(); i++) {
+            System.out.println(Libros.get(i).toString("#"));
+        }
+
+    }
+    public static  void mostraarLosPedidos(ArrayList Pedidos){
+        for (int i = 0; i < Pedidos.size(); i++) {
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
+            System.out.println(Pedidos.get(i));
+
+        }
+    }
 }

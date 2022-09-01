@@ -82,23 +82,15 @@ public class Filial {
     }
 
     public void mostrarSocio() {
-        for (int i = 0; i < Socios.size(); i++) {
-            System.out.println("Socio: " + Socios.get(i));
-        }
+        Vista.mostrarLosSocios(Socios);
     }
 
     public void mostrarLibro() {
-        for (int i = 0; i < Libros.size(); i++) {
-            System.out.println(Libros.get(i).toString("#"));
-        }
+        Vista.mostrarLosLibros(Libros);
     }
 
     public void mostrarPedidos() {
-        for (int i = 0; i < Pedidos.size(); i++) {
-            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
-            System.out.println(Pedidos.get(i));
-            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
-        }
+        Vista.mostraarLosPedidos(Pedidos);
     }
 
     @Override
