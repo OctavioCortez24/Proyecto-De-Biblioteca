@@ -78,7 +78,7 @@ public class Vista {
 
     }
 
-    public static Libro borrarLibro(ArrayList<Libro> Libros) {
+    public static Libro eleccionLibro(ArrayList<Libro> Libros) {
         boolean bandera = false;
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Borrar Libros");
@@ -121,7 +121,7 @@ public class Vista {
         return numerLibro;
     }
 
-    public static Socio borrarSocio(ArrayList<Socio> Socios) {
+    public static Socio eleccionSocio(ArrayList<Socio> Socios) {
         boolean fallo = false;
         int numerSocio = 0;
         Scanner leerNumer = new Scanner(System.in);

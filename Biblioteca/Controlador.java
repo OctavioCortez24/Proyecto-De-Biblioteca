@@ -35,12 +35,12 @@ public class Controlador {
             } else if (eleccion == 4) {
                 Filial1.mostrarLibro();
             } else if (eleccion == 5) {
-                Libro libro = Vista.borrarLibro(LibrosFilial);
+                Libro libro = Vista.eleccionLibro(LibrosFilial);
                 Filial1.borrarLibro(libro);
                 Modelo.GuardarLibros(LibrosFilial);
                 System.out.println("Libro borrado con exito");
             } else if (eleccion == 6) {
-                Socio socio = Vista.borrarSocio(SociosFilial);
+                Socio socio = Vista.eleccionSocio(SociosFilial);
                 Filial1.borrarSocio(socio);
                 Modelo.GuardarSocios(SociosFilial);
                 System.out.println("Socio borrado con exito");
