@@ -8,7 +8,10 @@ public class Modelo {
         solamente permite array de tipo String.
          */
         //Copio los datos del Array de Pedidos a un array de String
-        ArrayList<String> PedidosString = Controlador.CopiarDatosPedidos(Pedidos);
+        ArrayList<String> PedidosString = new ArrayList<>();
+        for (int i=0;i<Pedidos.size();i++){
+            PedidosString.add(Pedidos.get(i).toString("&"));
+        }
         GestorArchivos.guardarArray(PedidosString, "ArrayPedidos.txt");
     }
 
@@ -18,9 +21,12 @@ public class Modelo {
          */
 
         //Copio los datos del Array de Socios a un array de String
-        ArrayList<String> SociosString = Controlador.CopiarDatos(Socios);
+        ArrayList<String> SociosString = new ArrayList<>();
+        for (int i=0;i<Socios.size();i++){
+            SociosString.add(Socios.get(i).toString("%"));
+        }
 
-        //Guardo los arrays de String
+        //Guardo el array de String
         GestorArchivos.guardarArray(SociosString, "ArraySocios.txt");
     }
 
@@ -29,7 +35,11 @@ public class Modelo {
         solamente permite array de tipo String.
          */
         //Copio los datos del Array de Libros a un array de String
-        ArrayList<String> LibrosString = Controlador.CopiarDatosLibros(Libros);
+        ArrayList<String> LibrosString = new ArrayList<>();
+        for (int i=0;i<Libros.size();i++){
+            LibrosString.add(Libros.get(i).toString("%"));
+        }
+        //Guardo el array
         GestorArchivos.guardarArray(LibrosString, "ArrayLibros.txt");
     }
 

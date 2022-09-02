@@ -188,13 +188,10 @@ public class Vista {
         return new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
     }
 
-    public static void mostrarLosSocios(ArrayList arrayList){
-        for (int i = 0; i < arrayList.size(); i++) {
-            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
-            System.out.println(arrayList.get(i));
-            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
+    public static void mostrarLosSocios(ArrayList Socios){
+        for (int i = 0; i < Socios.size(); i++) {
+            System.out.println(Socios.get(i));
         }
-
     }
 
     public static void mostrarLosLibros(ArrayList<Libro> Libros){
@@ -208,7 +205,7 @@ public class Vista {
         for (int i = 0; i < Pedidos.size(); i++) {
             System.out.println("o---o---o---o---o---o---o---o---o---o---o");
             System.out.println(Pedidos.get(i));
-
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         }
     }
 }

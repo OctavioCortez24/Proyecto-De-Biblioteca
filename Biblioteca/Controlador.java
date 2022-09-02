@@ -59,36 +59,9 @@ public class Controlador {
         } while (eleccion != 0);
     }
 
-    public static ArrayList<String> CopiarDatos(ArrayList<Socio> arrayList) {
-        ArrayList<String> arrayRetorno = new ArrayList<>();
-        for (int i=0;i<arrayList.size();i++){
-            arrayRetorno.add(arrayList.get(i).toString("%"));
-        }
-
-        return arrayRetorno;
-    }
-    public static ArrayList<String> CopiarDatosLibros(ArrayList<Libro> arrayList) {
-        ArrayList<String> arrayRetorno = new ArrayList<>();
-
-        for (int i=0;i<arrayList.size();i++){
-            arrayRetorno.add(arrayList.get(i).toString("%"));
-        }
-
-        return arrayRetorno;
-    }
-    public static ArrayList<String> CopiarDatosPedidos(ArrayList<Pedido> arrayList) {
-        ArrayList<String> arrayRetorno = new ArrayList<>();
-
-        for (int i=0;i<arrayList.size();i++){
-            arrayRetorno.add(arrayList.get(i).toString("&"));
-        }
-
-        return arrayRetorno;
-    }
 
 
     public static Socio recuperarSocio(String cadena) {
-        Socio socio;
 
         String[] vector = cadena.split("%");
         String nombre = vector[0];
