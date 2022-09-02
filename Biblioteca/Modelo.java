@@ -43,7 +43,7 @@ public class Modelo {
         GestorArchivos.guardarArray(LibrosString, "ArrayLibros.txt");
     }
 
-    public static void CargarArrays(ArrayList<Socio> Socios, ArrayList<Libro> Libros, ArrayList<Pedido> Pedidos) {
+    public static void CargarSocios(ArrayList<Socio> Socios) {
         /* Ahora recupero los arrays de String y los vuelvo a convertir en array de objetos.
          */
         //Cargo el array Socio-------------
@@ -55,7 +55,8 @@ public class Modelo {
             Socios.add(socio);
         }
         //-----------------------------
-
+    }
+    public static void  CargarLibros(ArrayList<Libro> Libros){
         //Cargo el array de Libros
         ArrayList<String> LibrosCargados = GestorArchivos.cargarArray("ArrayLibros.txt");
         for (int i = 0; i < LibrosCargados.size(); i++) {
@@ -63,6 +64,8 @@ public class Modelo {
             Libros.add(libro);
         }
         //-----------------------------
+    }
+    public static void CargarPedidos(ArrayList<Pedido>Pedidos){
 
         //Cargo de array de Pedidos
         ArrayList<String> PedidosCargados = GestorArchivos.cargarArray("ArrayPedidos.txt");

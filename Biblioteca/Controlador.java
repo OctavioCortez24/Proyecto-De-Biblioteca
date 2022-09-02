@@ -14,7 +14,9 @@ public class Controlador {
         ArrayList<Pedido> PedidosFilial=Filial1.getPedidos();//Creo el array de Pedidos
 
         //Cargo los array con la informacion que tengo almacenada en el archivo .txt.
-        Modelo.CargarArrays(SociosFilial,LibrosFilial,PedidosFilial);
+        Modelo.CargarSocios(SociosFilial);
+        Modelo.CargarLibros(LibrosFilial);
+        Modelo.CargarPedidos(PedidosFilial);
 
 
 
