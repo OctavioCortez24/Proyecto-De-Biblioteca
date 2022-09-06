@@ -147,7 +147,7 @@ public class Vista {
     public static Socio crearSocio() {
 
         Scanner Leer = new Scanner(System.in);
-        Scanner LeerNumer=new Scanner(System.in);
+        Scanner LeerNumer = new Scanner(System.in);
         System.out.println("Igrese su nombre");
         String nombre = Leer.nextLine();
         System.out.println("Ingrese su apellido:");
@@ -188,20 +188,21 @@ public class Vista {
         return new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
     }
 
-    public static void mostrarLosSocios(ArrayList Socios){
+    public static void mostrarLosSocios(ArrayList Socios) {
         for (int i = 0; i < Socios.size(); i++) {
             System.out.println(Socios.get(i));
         }
     }
 
-    public static void mostrarLosLibros(ArrayList<Libro> Libros){
+    public static void mostrarLosLibros(ArrayList<Libro> Libros) {
 
         for (int i = 0; i < Libros.size(); i++) {
             System.out.println(Libros.get(i).toString("#"));
         }
 
     }
-    public static  void mostraarLosPedidos(ArrayList Pedidos){
+
+    public static void mostraarLosPedidos(ArrayList Pedidos) {
         for (int i = 0; i < Pedidos.size(); i++) {
             System.out.println("o---o---o---o---o---o---o---o---o---o---o");
             System.out.println(Pedidos.get(i));

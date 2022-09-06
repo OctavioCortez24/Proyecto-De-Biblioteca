@@ -4,8 +4,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Controlador {
-    public Controlador() {
-    }
+
 
     public static void main(String[] args) {
         Filial Filial1 = new Filial("Biblioteca 1");//Instancio un objeto filial

@@ -51,9 +51,10 @@ public class Modelo {
          */
         //Cargo el array Socio-------------
         ArrayList<String> SociosCargados = GestorArchivos.cargarArray("ArraySocios.txt");
+
+        //Convierto el array de String a Objetos de tipo Socio
         if (SociosCargados!=null){
             for (int i = 0; i < SociosCargados.size(); i++) {
-
                 Socio socio = Modelo.recuperarSocio(SociosCargados.get(i));
                 Socios.add(socio);
             }
@@ -63,6 +64,8 @@ public class Modelo {
     public static void  CargarLibros(ArrayList<Libro> Libros){
         //Cargo el array de Libros
         ArrayList<String> LibrosCargados = GestorArchivos.cargarArray("ArrayLibros.txt");
+
+        //Convierto el array de String a Objetos de tipo Libro
         for (int i = 0; i < LibrosCargados.size(); i++) {
             Libro libro = Modelo.recuperarLibro(LibrosCargados.get(i));
             Libros.add(libro);
@@ -73,6 +76,8 @@ public class Modelo {
 
         //Cargo de array de Pedidos
         ArrayList<String> PedidosCargados = GestorArchivos.cargarArray("ArrayPedidos.txt");
+
+        //Convierto de array de String a Objetos de tipo Pedido
         for (int i = 0; i < PedidosCargados.size(); i++) {
             Pedido pedido = Modelo.recuperarPedido(PedidosCargados.get(i));
             Pedidos.add(pedido);
