@@ -8,7 +8,7 @@ public class Controlador {
     }
 
     public static void main(String[] args) {
-        Filial Filial1 = new Filial("Biblioteca 1");
+        Filial Filial1 = new Filial("Biblioteca 1");//Instancio un objeto filial
         ArrayList<Libro> LibrosFilial = Filial1.getLibros();//Creo el array de Libros
         ArrayList<Socio> SociosFilial = Filial1.getSocios();//Creo el array de Socios
         ArrayList<Pedido> PedidosFilial=Filial1.getPedidos();//Creo el array de Pedidos
@@ -63,38 +63,5 @@ public class Controlador {
 
 
 
-    public static Socio recuperarSocio(String cadena) {
-
-        String[] vector = cadena.split("%");
-        String nombre = vector[0];
-        String apellido = vector[1];
-        String dniString = vector[2];
-
-        int DNI = Integer.parseInt(dniString);
-        return new Socio(nombre, apellido, DNI);
-    }
-    public static Libro recuperarLibro(String cadena) {
-
-        String[] vector = cadena.split("%");
-        String nombre = vector[0];
-        String autor = vector[1];
-        String categoria = vector[2];
-        String disponibilidad=vector[3];
-        boolean disp=Boolean.parseBoolean(disponibilidad);
-        return new Libro(nombre, autor,categoria,disp);
-    }
-    public static Pedido recuperarPedido(String cadena){
-        String []vector=cadena.split("&");
-        String fechaPrestamo=vector[0];
-        LocalDate prestamo=LocalDate.parse(fechaPrestamo);
-        String fechaDevolver=vector[1];
-        LocalDate devolver=LocalDate.parse(fechaDevolver);
-        String libro=vector[2];
-        Libro LibroPedido=Controlador.recuperarLibro(libro);
-        String socio=vector[3];
-        Socio SocioP=Controlador.recuperarSocio(socio);
-
-        return new Pedido(prestamo,devolver,LibroPedido,SocioP);
-    }
 
 }
