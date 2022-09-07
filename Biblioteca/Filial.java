@@ -73,12 +73,12 @@ public class Filial {
         Pedidos.add(p);
     }
 
-    public void borrarLibro(Libro l) {
-        Libros.remove(l);
+    public void borrarLibro(int numeroLibro) {
+        Libros.remove(Libros.get(numeroLibro));
     }
 
-    public void borrarSocio(Socio s) {
-        Socios.remove(s);
+    public void borrarSocio(int socio) {
+        Socios.remove(Socios.get(socio));
     }
 
     public void mostrarSocio() {

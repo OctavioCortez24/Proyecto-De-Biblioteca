@@ -1,5 +1,6 @@
 package Biblioteca;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Prueba {
@@ -39,13 +40,81 @@ public class Prueba {
             System.out.println(SociosRecuperados.get(i));
         }*/
 
-        String Libros=GestorArchivos.cargar("ArrayLibros.txt");
+      /*  String Libros=GestorArchivos.cargar("ArrayLibros.txt");
         System.out.println(Libros);
         String []vector=Libros.split("#");
         for (int i=0;i< vector.length;i++){
             System.out.println(vector[i]);
+        }*/
+        Scanner leerNumer=new Scanner(System.in);
+        boolean bandera=false;
+        int numerLibro=0;
+        do {
+
+
+            System.out.println("Ingrese un valor:");
+            bandera=true;
+            try {
+                numerLibro = leerNumer.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("No debes ingresar letras o simbolos");
+                bandera=false;
+                leerNumer.nextLine();
+            }
+        }while (!bandera);
+
+        System.out.println(numerLibro);
+    }
+
+    public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {
+        Scanner leerNumer = new Scanner(System.in);
+        System.out.println("Registrar un pedido");
+        LocalDate prestamoHoy = LocalDate.now();//Fecha de hoy
+        LocalDate fechaDevolverLibro = LocalDate.now().plusDays(15);//Fecha de hoy mas 15 dias
+
+        System.out.println("Seleccione el libro:");
+        for (int i = 0; i < Libros.size(); i++) {
+            if (Libros.get(i).getDisponibilidad() == true) {
+                System.out.println("[" + i + "]-->" + Libros.get(i));
+            }
         }
+        int elecionLib = leerNumer.nextInt();
+        Libros.get(elecionLib).setDisponibilidad(false);
+        Libro libroElegido = Libros.get(elecionLib);
+
+        System.out.println("Selecione el socio:");
+        for (int i = 0; i < Socios.size(); i++) {
+            System.out.println("[" + i + "]" + Socios.get(i));
+        }
+        int elecionSoci = leerNumer.nextInt();
+        Socio socio = Socios.get(elecionSoci);
 
 
+        return new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
+    }
+    public static int devolverLibro(ArrayList<Libro> Libros) {
+        int numerLibro = 0;
+        Scanner leerNumer = new Scanner(System.in);
+        System.out.println("Seleccione el numero del Lbro:");
+        for (int i = 0; i < Libros.size(); i++) {
+            if (Libros.get(i).getDisponibilidad() == false) {
+                System.out.println("[" + i + "]--> " + Libros.get(i));
+            }
+        }
+        boolean bandera = false;
+        do {
+            bandera = true;
+            try {
+                numerLibro = leerNumer.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("No debes ingresar letras o simbolos, vuelve a intentarlo:");
+                bandera = false;
+                leerNumer.nextLine();
+            }
+        } while (!bandera);
+
+        return numerLibro;
     }
 }
