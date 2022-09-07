@@ -91,7 +91,7 @@ public class Vista {
         boolean fallo = false;
         int numerSocio = 0;
         Scanner leerNumer = new Scanner(System.in);
-        System.out.println("Seleccione el libro:");
+        System.out.println("Seleccione el numero del socio:");
         for (int i = 0; i < Socios.size(); i++) {
             System.out.println("[" + i + "]--> " + Socios.get(i));
         }
