@@ -60,7 +60,7 @@ public class Socio {
 
     @Override
     public boolean equals(Object obj) {
-        Socio s=(Socio) obj;
+        Socio s = (Socio) obj;
 
         return toString().equals(s.toString());
     }

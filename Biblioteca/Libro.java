@@ -54,8 +54,16 @@ public class Libro {
 
     @Override
     public String toString() {
-        //"Titulo: " + tituloDeLib + " Autor: " + nombreDelAutor +" Categoria: " + categoria +" Disponibilidad: " + disponibilidad;
-        return "Titulo: " + tituloDeLib;
+        String dispo = "";
+        if (disponibilidad) {
+            dispo = "Disponible";
+        } else {
+            dispo = "No disponible";
+        }
+        return "Titulo: " + tituloDeLib + "\n"
+                + "Autor: " + nombreDelAutor + "\n"
+                + "Categoria: " + categoria + "\n"
+                + "Disponibilidad: " + dispo;
     }
 
     public String toString(String ceparador) {

@@ -51,18 +51,19 @@ public class Filial {
     public void anadirLibro(Libro l) {
         Libros.add(l);
     }
-    public void devolverLibro(int l){
+
+    public void devolverLibro(int l) {
         Libros.get(l).setDisponibilidad(true);
     }
 
     public void anadirSocio(Socio s) {
-        boolean bandera=false;
-        for (int i=0;i<Socios.size();i++){
-            if (Socios.get(i).equals(s)){
-                bandera=true;
+        boolean bandera = false;
+        for (int i = 0; i < Socios.size(); i++) {
+            if (Socios.get(i).equals(s)) {
+                bandera = true;
             }
         }
-        if (!bandera){
+        if (!bandera) {
             Socios.add(s);
 
         }
@@ -98,19 +99,20 @@ public class Filial {
         return nombreFilial;
     }
 
-    public  String toStringSocios(String barita){
-        String socios="";
+    public String toStringSocios(String barita) {
+        String socios = "";
 
-        for (int i=0;i<Socios.size();i++){
-           socios= socios+Socios.get(i).toString("#")+barita;
+        for (int i = 0; i < Socios.size(); i++) {
+            socios = socios + Socios.get(i).toString("#") + barita;
         }
         return socios;
     }
-    public String toStringLibros(String barita){
-        String libros="";
 
-        for (int i=0;i<Libros.size();i++){
-            libros= libros+Libros.get(i).toString("#")+barita;
+    public String toStringLibros(String barita) {
+        String libros = "";
+
+        for (int i = 0; i < Libros.size(); i++) {
+            libros = libros + Libros.get(i).toString("#") + barita;
         }
         return libros;
     }

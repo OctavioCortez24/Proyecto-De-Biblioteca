@@ -24,16 +24,18 @@ public class Controlador {
             eleccion = Vista.menu();
             if (eleccion == 1) {
 
+                System.out.println("Añadir un socio a la biblioteca");
                 ArrayList<String> AtributosSocio = Vista.crearSocio();
-                String nombre=AtributosSocio.get(0);
-                String apellido=AtributosSocio.get(1);
-                int DNI=Integer.parseInt(AtributosSocio.get(2));
+                String nombre = AtributosSocio.get(0);
+                String apellido = AtributosSocio.get(1);
+                int DNI = Integer.parseInt(AtributosSocio.get(2));
 
-                Socio socio1 = new Socio(nombre,apellido,DNI);//Instancio un socio
+                Socio socio1 = new Socio(nombre, apellido, DNI);//Instancio un socio
                 Filial1.anadirSocio(socio1);
 
             } else if (eleccion == 2) {
 
+                System.out.println("Añadir un libro a la biblioteca");
                 ArrayList<String> LibrosAtributos = Vista.crearLibro();
                 String titulo = LibrosAtributos.get(0);
                 String autor = LibrosAtributos.get(1);
@@ -71,14 +73,14 @@ public class Controlador {
                 LocalDate prestamoHoy = LocalDate.now();//Fecha de hoy
                 LocalDate fechaDevolverLibro = LocalDate.now().plusDays(15);//Fecha de hoy mas 15 dias
                 //Libro
-                int numeroLibro=Vista.eleccionLibro(LibrosFilial);
-                Libro libro=LibrosFilial.get(numeroLibro);
+                int numeroLibro = Vista.eleccionLibro(LibrosFilial);
+                Libro libro = LibrosFilial.get(numeroLibro);
                 //-----
                 //Socio
-                int numeroSocio=Vista.eleccionSocio(SociosFilial);
-                Socio socio=SociosFilial.get(numeroSocio);
+                int numeroSocio = Vista.eleccionSocio(SociosFilial);
+                Socio socio = SociosFilial.get(numeroSocio);
                 //------
-                Pedido p = new Pedido(prestamoHoy,fechaDevolverLibro,libro,socio);//Instancio un pedido
+                Pedido p = new Pedido(prestamoHoy, fechaDevolverLibro, libro, socio);//Instancio un pedido
                 Filial1.anadirPedido(p);
 
             } else if (eleccion == 8) {

@@ -42,7 +42,7 @@ public class Vista {
     }
 
     public static ArrayList crearLibro() {
-        ArrayList<String>array=new ArrayList<>();
+        ArrayList<String> array = new ArrayList<>();
         Scanner Leer = new Scanner(System.in);
 
         System.out.print("Ingrese el nombre del libro: ");
@@ -57,7 +57,7 @@ public class Vista {
         String categoriaLib = Leer.nextLine();
         array.add(categoriaLib);
 
-        String disponibleLib="true";
+        String disponibleLib = "true";
         array.add(disponibleLib);
 
         return array;
@@ -69,7 +69,7 @@ public class Vista {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Seleccione el numero del Libro:");
         for (int i = 0; i < Libros.size(); i++) {
-            System.out.println("[" + i + "]--> " + Libros.get(i));
+            System.out.println("[" + i + "]--> " + Libros.get(i).getNombreDeLib());
         }
         int numerLibro = 0;
         do {
@@ -85,7 +85,6 @@ public class Vista {
         } while (!bandera);
         return numerLibro;
     }
-
 
 
     public static int eleccionSocio(ArrayList<Socio> Socios) {
@@ -113,7 +112,7 @@ public class Vista {
     }
 
     public static ArrayList crearSocio() {
-        ArrayList<String>atributosS=new ArrayList<>();
+        ArrayList<String> atributosS = new ArrayList<>();
 
         Scanner Leer = new Scanner(System.in);
 
@@ -145,7 +144,9 @@ public class Vista {
     public static void mostrarLosLibros(ArrayList<Libro> Libros) {
 
         for (int i = 0; i < Libros.size(); i++) {
-            System.out.println(Libros.get(i).toString("#"));
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
+            System.out.println(Libros.get(i).toString());
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         }
 
     }
