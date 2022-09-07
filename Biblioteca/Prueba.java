@@ -46,7 +46,7 @@ public class Prueba {
         for (int i=0;i< vector.length;i++){
             System.out.println(vector[i]);
         }*/
-        Scanner leerNumer=new Scanner(System.in);
+        /*Scanner leerNumer=new Scanner(System.in);
         boolean bandera=false;
         int numerLibro=0;
         do {
@@ -62,9 +62,32 @@ public class Prueba {
                 bandera=false;
                 leerNumer.nextLine();
             }
-        }while (!bandera);
+        }while (!bandera);*/
 
-        System.out.println(numerLibro);
+       /* Libro l=new Libro("The Book","Carlos","Fantasia",true);
+        Libro l2=new Libro("The Book","Carlos","Fantasia",true);
+        Libro l3=new Libro("The Book 2","Carlos","Fantasia",true);
+
+        System.out.println("Son iguales l y l2 :"+l.equals(l2));
+        System.out.println("Son iguales l y l3 :"+l.equals(l3));*/
+
+
+        Socio s=new Socio("Juan","Castro",1234);
+        Socio s2=new Socio("Juan","Castro",1234);
+        Socio s3=new Socio("JuanL","Castro",1234);
+
+        ArrayList<Socio>socios=new ArrayList<>();
+        socios.add(s);
+        socios.add(s2);
+        socios.add(s3);
+
+        Socio s4=new Socio("Juan","Castro",1234);
+        for (int i=0;i<socios.size();i++){
+            if (s4.equals(socios.get(i))){
+                System.out.println(s4+" y "+ socios.get(i)+" Son iguales");
+            }
+        }
+
     }
 
     public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {

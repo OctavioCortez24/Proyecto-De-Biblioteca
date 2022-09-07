@@ -65,7 +65,7 @@ public class Controlador {
                 System.out.println("Borrar socios");
                 int numeroSocio = Vista.eleccionSocio(SociosFilial);
                 Filial1.borrarSocio(numeroSocio);
-                System.out.println("Socio borrado con exito");
+
 
             } else if (eleccion == 7) {
                 System.out.println("Registrar un pedido");

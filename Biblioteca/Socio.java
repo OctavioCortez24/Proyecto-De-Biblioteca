@@ -61,7 +61,6 @@ public class Socio {
     @Override
     public boolean equals(Object obj) {
         Socio s = (Socio) obj;
-
-        return toString().equals(s.toString());
+        return nombre.equals(s.nombre) & apellido.equals(s.apellido) & DNI==s.DNI;
     }
 }

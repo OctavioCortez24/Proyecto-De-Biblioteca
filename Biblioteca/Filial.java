@@ -59,13 +59,15 @@ public class Filial {
     public void anadirSocio(Socio s) {
         boolean bandera = false;
         for (int i = 0; i < Socios.size(); i++) {
-            if (Socios.get(i).equals(s)) {
+            if (s.equals(Socios.get(i))) {
                 bandera = true;
             }
         }
+
         if (!bandera) {
             Socios.add(s);
-
+        } else {
+            System.out.println("El socio que ingreso ya se encuentra añadido");
         }
 
     }
@@ -75,11 +77,21 @@ public class Filial {
     }
 
     public void borrarLibro(int numeroLibro) {
-        Libros.remove(Libros.get(numeroLibro));
+        try {
+            Libros.remove(Libros.get(numeroLibro));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("No existe un libro que tenga asignado ese numero");
+        }
+
     }
 
     public void borrarSocio(int socio) {
-        Socios.remove(Socios.get(socio));
+        try {
+            Socios.remove(Socios.get(socio));
+            System.out.println("Socio borrado con exito");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("No existe un socio que tenga asignado ese numero");
+        }
     }
 
     public void mostrarSocio() {
@@ -99,22 +111,25 @@ public class Filial {
         return nombreFilial;
     }
 
-    public String toStringSocios(String barita) {
-        String socios = "";
+    public String toString(String barita, String elecion) {
+        String string = "";
 
-        for (int i = 0; i < Socios.size(); i++) {
-            socios = socios + Socios.get(i).toString("#") + barita;
+        if (elecion.equals("Socios")) {
+            for (int i = 0; i < Socios.size(); i++) {
+                string = string + Socios.get(i).toString("#") + barita;
+            }
+        } else if (elecion.equals("Libros")) {
+            for (int i = 0; i < Libros.size(); i++) {
+                string = string + Libros.get(i).toString("#") + barita;
+            }
+        } else if (elecion.equals("Pedidos")) {
+            for (int i = 0; i < Pedidos.size(); i++) {
+                string = string + Pedidos.get(i).toString("#") + barita;
+            }
         }
-        return socios;
+
+        return string;
     }
 
-    public String toStringLibros(String barita) {
-        String libros = "";
-
-        for (int i = 0; i < Libros.size(); i++) {
-            libros = libros + Libros.get(i).toString("#") + barita;
-        }
-        return libros;
-    }
 
 }

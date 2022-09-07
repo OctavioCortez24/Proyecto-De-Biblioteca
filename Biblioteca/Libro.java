@@ -72,6 +72,8 @@ public class Libro {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        Libro l= (Libro)obj;
+
+        return tituloDeLib==l.tituloDeLib&nombreDelAutor==l.nombreDelAutor&categoria==l.categoria&disponibilidad==l.disponibilidad;
     }
 }
