@@ -88,7 +88,6 @@ public class Vista {
 
 
     public static int eleccionSocio(ArrayList<Socio> Socios) {
-        boolean fallo = false;
         int numerSocio = 0;
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Seleccione el numero del socio:");
