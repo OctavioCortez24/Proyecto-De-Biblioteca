@@ -54,12 +54,8 @@ public class Libro {
 
     @Override
     public String toString() {
-        String dispo = "";
-        if (disponibilidad) {
-            dispo = "Disponible";
-        } else {
-            dispo = "No disponible";
-        }
+        String dispo = disponibilidad?"Disponible":"No Disponible";
+
         return "Titulo: " + tituloDeLib + "\n"
                 + "Autor: " + nombreDelAutor + "\n"
                 + "Categoria: " + categoria + "\n"

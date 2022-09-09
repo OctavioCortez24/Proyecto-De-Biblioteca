@@ -88,6 +88,10 @@ public class Prueba {
             }
         }
 
+        String r;
+        boolean b=false;
+        r=b?"ddd":"dw";
+
     }
 
     public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {

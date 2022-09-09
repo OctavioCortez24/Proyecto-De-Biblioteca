@@ -99,6 +99,7 @@ public class Controlador {
             Modelo.GuardarSocios(SociosFilial);
 
         } while (eleccion != 0);
+
     }
 
 
