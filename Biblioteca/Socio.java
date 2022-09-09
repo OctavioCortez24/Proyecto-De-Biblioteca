@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class Socio {
 
-    ArrayList<Libro> historial = new ArrayList();
     private String nombre;
     private String apellido;
     private int DNI;
@@ -43,10 +42,6 @@ public class Socio {
 
     public void setDni(int ID) {
         this.DNI = DNI;
-    }
-
-    public void historial(Libro l) {
-        historial.add(l);
     }
 
     @Override
