@@ -1,7 +1,5 @@
 package Biblioteca;
 
-import java.util.Date;
-
 public class Libro {
     private String tituloDeLib;
     private boolean disponibilidad;
@@ -71,5 +69,9 @@ public class Libro {
         Libro l= (Libro)obj;
 
         return tituloDeLib==l.tituloDeLib&nombreDelAutor==l.nombreDelAutor&categoria==l.categoria&disponibilidad==l.disponibilidad;
+    }
+
+    public void añadirLibro(){
+        Modelo.guardarLibro(tituloDeLib,nombreDelAutor,categoria,disponibilidad);
     }
 }

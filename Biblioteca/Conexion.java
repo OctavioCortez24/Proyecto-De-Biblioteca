@@ -4,33 +4,21 @@ import javax.swing.*;
 import java.sql.*;
 
 public class Conexion {
-    private static Conexion conexion;
-    private static Connection conn;
-    private static final String URL = "jdbc:mysql://localhost:3306/bibliotecas";
-    private static final String user = "root";
-    private static final String password = "1234";
 
+    private static Connection conn;
     private Conexion() {
 
     }
 
-    static Conexion getInstance() {
-        if (conexion == null) {
-            conexion = new Conexion();
-        }
-        return conexion;
-    }
-
-    public Connection crearConexion() {
-        try {
-            conn = DriverManager.getConnection(URL, user, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    static Connection getInstance() throws SQLException{
+        if (conn == null) {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bibliotecas", "root", "1234");
         }
         return conn;
     }
 
-    public void cerrarConexion () throws SQLException{
+
+    public static void cerrarConexion () throws SQLException{
         try {
             conn.close();
         } catch (Exception e) {

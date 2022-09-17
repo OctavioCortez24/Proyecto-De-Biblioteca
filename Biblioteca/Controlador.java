@@ -2,21 +2,17 @@ package Biblioteca;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.sql.*;
 
 public class Controlador {
 
 
     public static void main(String[] args) {
-        Filial Filial1 = new Filial("Biblioteca 1");//Instancio un objeto filial
-        ArrayList<Libro> LibrosFilial = Filial1.getLibros();//array de Libros de la Filial 1
-        ArrayList<Socio> SociosFilial = Filial1.getSocios();//array de Socios de la Filial 1
-        ArrayList<Pedido> PedidosFilial = Filial1.getPedidos();//array de Pedidos de la Filial 1
 
         //Cargo los array con la informacion que tengo almacenada en el archivo .txt.
-        Modelo.CargarSocios(SociosFilial);
-        Modelo.CargarLibros(LibrosFilial);
-        Modelo.CargarPedidos(PedidosFilial);
-
+        ArrayList<Libro> Libros = Modelo.cargarArrayDeObjetoLibro();
+        ArrayList<Socio> Socios = Modelo.cargarArrayDeObjetoSocio();
+        ArrayList<Pedido> Pedidos;
 
         int eleccion = 0;
         //Menu
@@ -31,7 +27,7 @@ public class Controlador {
                 int DNI = Integer.parseInt(AtributosSocio.get(2));
 
                 Socio socio1 = new Socio(nombre, apellido, DNI);//Instancio un socio
-                Filial1.anadirSocio(socio1);
+                socio1.agregarSocio();
 
             } else if (eleccion == 2) {
 
@@ -43,60 +39,55 @@ public class Controlador {
                 boolean disponibilidad = Boolean.parseBoolean(LibrosAtributos.get(3));
 
                 Libro libro1 = new Libro(titulo, autor, categoria, disponibilidad);//Instancio un libro
-                Filial1.anadirLibro(libro1);
+
+                libro1.añadirLibro();
 
             } else if (eleccion == 3) {
 
-                Filial1.mostrarSocio();
+                Vista.mostrarLosSocios(Socios);
 
             } else if (eleccion == 4) {
 
-                Filial1.mostrarLibro();
+               Vista.mostrarLosLibros(Libros);
 
             } else if (eleccion == 5) {
 
                 System.out.println("Borrar Libros");
-                int numeroLibro = Vista.eleccionLibro(LibrosFilial);
-                Filial1.borrarLibro(numeroLibro);
+                // int numeroLibro = Vista.eleccionLibro();
+
                 System.out.println("Libro borrado con exito");
 
             } else if (eleccion == 6) {
 
                 System.out.println("Borrar socios");
-                int numeroSocio = Vista.eleccionSocio(SociosFilial);
-                Filial1.borrarSocio(numeroSocio);
+                //int numeroSocio = Vista.eleccionSocio(Modelo.getSocios());
+                // Modelo.borrarSocio(numeroSocio);
 
 
             } else if (eleccion == 7) {
                 System.out.println("Registrar un pedido");
-
-                LocalDate prestamoHoy = LocalDate.now();//Fecha de hoy
-                LocalDate fechaDevolverLibro = LocalDate.now().plusDays(15);//Fecha de hoy mas 15 dias
                 //Libro
-                int numeroLibro = Vista.eleccionLibro(LibrosFilial);
-                Libro libro = LibrosFilial.get(numeroLibro);
+                int numeroLibro = Vista.eleccionLibro(Libros);
+                Libro libro = Libros.get(numeroLibro);
                 //-----
                 //Socio
-                int numeroSocio = Vista.eleccionSocio(SociosFilial);
-                Socio socio = SociosFilial.get(numeroSocio);
+                int numeroSocio = Vista.eleccionSocio(Socios);
+                Socio socio = Socios.get(numeroSocio);
                 //------
-                Pedido p = new Pedido(prestamoHoy, fechaDevolverLibro, libro, socio);//Instancio un pedido
-                Filial1.anadirPedido(p);
+                Pedido p = new Pedido(LocalDate.now(), LocalDate.now().plusDays(15), libro, socio);//Instancio un pedido
+                p.anadirPedido();
 
             } else if (eleccion == 8) {
-                Filial1.mostrarPedidos();
+                //   Vista.mostrarLosPedidos();
 
             } else if (eleccion == 9) {
 
                 System.out.println("Devolver Libros");
-                int libro = Vista.eleccionLibro(LibrosFilial);
+                // int libro = Vista.eleccionLibro(Modelo.getLibros());
 
-                Filial1.devolverLibro(libro);
+                //Pedido.devolverLibro(libro);
 
             }
-            Modelo.GuardarLibros(LibrosFilial);
-            Modelo.GuardarPedidos(PedidosFilial);
-            Modelo.GuardarSocios(SociosFilial);
 
         } while (eleccion != 0);
 

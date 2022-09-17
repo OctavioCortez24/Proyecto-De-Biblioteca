@@ -58,4 +58,7 @@ public class Socio {
         Socio s = (Socio) obj;
         return nombre.equals(s.nombre) & apellido.equals(s.apellido) & DNI==s.DNI;
     }
+    public void agregarSocio(){
+        Modelo.guardarSocio(nombre,apellido,DNI);
+    }
 }

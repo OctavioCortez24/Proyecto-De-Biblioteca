@@ -2,12 +2,30 @@ package Biblioteca;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLOutput;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.*;
 
 public class Prueba {
     public static void main(String[] args) {
+
+        ArrayList<String>test=new ArrayList<>();
+        test.add("Prueba#P#1");
+        test.add("Prueba2#p2#2");
+
+        String pru=GestorArchivos.empaquetador(test,"\r\n");
+        GestorArchivos.guardar("Prueba.txt",pru);
+
+        String finalP=GestorArchivos.cargar("Prueba.txt");
+
+        String line = System.getProperty("line.separator");
+
+        String f[]=finalP.split(line);
+        //ArrayList<String>f=GestorArchivos.desempaquetador(finalP,"\n");
+        for (int i=0;i<f.length;i++){
+            System.out.println(f[i]);
+        }
 
     }
 

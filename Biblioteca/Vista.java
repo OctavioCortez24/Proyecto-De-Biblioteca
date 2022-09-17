@@ -134,9 +134,13 @@ public class Vista {
     }
 
 
-    public static void mostrarLosSocios(ArrayList Socios) {
-        for (int i = 0; i < Socios.size(); i++) {
-            System.out.println(Socios.get(i));
+    public static void mostrarLosSocios(ArrayList<Socio>socios) {
+      //Cambiar
+
+        for (int i = 0; i < socios.size(); i++) {
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
+            System.out.println(socios.get(i));
+            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         }
     }
 
@@ -144,13 +148,13 @@ public class Vista {
 
         for (int i = 0; i < Libros.size(); i++) {
             System.out.println("o---o---o---o---o---o---o---o---o---o---o");
-            System.out.println(Libros.get(i).toString());
+            System.out.println(Libros.get(i));
             System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         }
 
     }
 
-    public static void mostraarLosPedidos(ArrayList Pedidos) {
+    public static void mostrarLosPedidos(ArrayList Pedidos) {
         for (int i = 0; i < Pedidos.size(); i++) {
             System.out.println("o---o---o---o---o---o---o---o---o---o---o");
             System.out.println(Pedidos.get(i));

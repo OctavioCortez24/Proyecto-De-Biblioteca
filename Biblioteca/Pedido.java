@@ -54,17 +54,29 @@ public class Pedido {
         this.libroPedido = libroPedido;
     }
 
+
+    public static void devolverLibro(int numeroLibro) {
+        //Modelo.getLibros().get(numeroLibro).setDisponibilidad(true);
+    }
+
+    public void anadirPedido() {
+
+        Modelo.guardarPedido(fecha_Prestamo,fecha_Devolver,libroPedido,socioPrestado);
+    }
+
+    ;
+
     @Override
     public String toString() {
 
         return "Fecha que fue prestado: " + fecha_Prestamo + "\n" +
                 "Fecha para ser devuelto: " + fecha_Devolver + "\n" +
-                "Libro pedido: " + libroPedido + "\n" +
+                "Libro pedido: " + libroPedido.getNombreDeLib() + "\n" +
                 "Socio nombre: " + socioPrestado;
     }
 
-    public String toString(String ceparador){
-        return fecha_Prestamo+ceparador+fecha_Devolver+ceparador+libroPedido.toString("%")+ceparador+socioPrestado.toString("%");
+    public String toString(String ceparador) {
+        return fecha_Prestamo + ceparador + fecha_Devolver + ceparador + libroPedido.toString("%") + ceparador + socioPrestado.toString("%");
     }
 
     @Override

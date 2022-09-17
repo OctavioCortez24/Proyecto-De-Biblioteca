@@ -1,124 +1,122 @@
 package Biblioteca;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Modelo {
-    public static void GuardarPedidos(ArrayList<Pedido> Pedidos) {
-        /*Debo copiar los datos de mis arrays de pedido porque el metodo de gestor de archivos, guardar ayrray,
-        solamente permite array de tipo String.
-         */
-        //Copio los datos del Array de Pedidos a un array de String
-        ArrayList<String> PedidosString = new ArrayList<>();
-        for (int i=0;i<Pedidos.size();i++){
-            PedidosString.add(Pedidos.get(i).toString("&"));
-        }
+public class Modelo{
+   public static void guardarLibro(String titulo, String autor,String categoria,boolean disponibilidad){
 
-        //Guardo el array de String con el metodo guardarArray del Gestor de Archivos
-        GestorArchivos.guardarArray(PedidosString, "ArrayPedidos.txt");
-    }
+      ArrayList<String>Libros=new ArrayList<>();
+      Libros.addAll(cargarLibros());
+      Libros.add(titulo + "%" + autor + "%" + categoria + "%" + disponibilidad);
 
-    public static void GuardarSocios(ArrayList<Socio> Socios) {
-        /*Debo copiar los datos de mis arrays de socio porque el metodo de gestor de archivos, guardar ayrray,
-        solamente permite array de tipo String.
-         */
+      //Guardo el array de String con el metodo guardarArray del Gestor de Archivos
+      GestorArchivos.guardarArray(Libros, "ArrayLibros.txt");
+      try{
+         PreparedStatement pSInsert= Conexion.getInstance().prepareStatement("INSERT INTO libros VALUES(?,?,?,?,?)");
+         pSInsert.setString(1,null);
+         pSInsert.setString(2, titulo);
+         pSInsert.setString(3,autor);
+         pSInsert.setString(4,categoria);
+         pSInsert.setBoolean(5,disponibilidad);
+         pSInsert.executeUpdate();
 
-        //Copio los datos del Array de Socios a un array de String
-        ArrayList<String> SociosString = new ArrayList<>();
-        for (int i=0;i<Socios.size();i++){
-            SociosString.add(Socios.get(i).toString("%"));
-        }
+         Conexion.cerrarConexion();
+         pSInsert.close();
+      }catch (SQLException e){
+         System.out.println("Error en guardar un libro");
+         throw new RuntimeException(e);
+      }
+      for (int i=0;i<Libros.size();i++){
+         System.out.println(Libros.get(i));
+      }
+   }
+   public static void guardarSocio(String nombre, String apellido, int DNI){
+      ArrayList<String>Socios=new ArrayList<>();
+      Socios.addAll(cargarSocios());
+      Socios.add(nombre+"%"+apellido+"%"+DNI);
+      GestorArchivos.guardarArray(Socios,"ArraySocios.txt");
+      try{
+         PreparedStatement pSInsert= Conexion.getInstance().prepareStatement("INSERT INTO socios VALUES(?,?,?,?)");
+         pSInsert.setString(1,null);
+         pSInsert.setString(2, nombre);
+         pSInsert.setString(3,apellido);
+         pSInsert.setInt(4,DNI);
 
-        //Guardo el array de String
-        GestorArchivos.guardarArray(SociosString, "ArraySocios.txt");
-    }
+         pSInsert.executeUpdate();
 
-    public static void GuardarLibros(ArrayList<Libro> Libros) {
-        /*Debo copiar los datos de mis arrays de libro porque el metodo de gestor de archivos, guardar ayrray,
-        solamente permite array de tipo String.
-         */
-        //Copio los datos del Array de Libros a un array de String
-        ArrayList<String> LibrosString = new ArrayList<>();
-        for (int i=0;i<Libros.size();i++){
-            LibrosString.add(Libros.get(i).toString("%"));
-        }
-        //Guardo el array
-        GestorArchivos.guardarArray(LibrosString, "ArrayLibros.txt");
-    }
+         Conexion.cerrarConexion();
+         pSInsert.close();
+      }catch (SQLException e){
+         System.out.println("Error en guardar un socio");
+         throw new RuntimeException(e);
+      }
+   }
 
-    public static void CargarSocios(ArrayList<Socio> Socios) {
-        /* Ahora recupero los arrays de String y los vuelvo a convertir en array de objetos.
-         */
-        //Cargo el array Socio-------------
-        ArrayList<String> SociosCargados = GestorArchivos.cargarArray("ArraySocios.txt");
+   public static void guardarPedido(LocalDate prestamo, LocalDate fecha_Devolver, Libro libroPedido, Socio socioPrestado){
+      ArrayList<String>Pedidos=new ArrayList<>();
 
-        //Convierto el array de String a Objetos de tipo Socio
-        if (SociosCargados!=null){
-            for (int i = 0; i < SociosCargados.size(); i++) {
-                Socio socio = Modelo.recuperarSocio(SociosCargados.get(i));
-                Socios.add(socio);
-            }
-        }
-        //-----------------------------
-    }
-    public static void  CargarLibros(ArrayList<Libro> Libros){
-        //Cargo el array de Libros
-        ArrayList<String> LibrosCargados = GestorArchivos.cargarArray("ArrayLibros.txt");
-
-        //Convierto el array de String a Objetos de tipo Libro
-        for (int i = 0; i < LibrosCargados.size(); i++) {
-            Libro libro = Modelo.recuperarLibro(LibrosCargados.get(i));
-            Libros.add(libro);
-        }
-        //-----------------------------
-    }
-    public static void CargarPedidos(ArrayList<Pedido>Pedidos){
-
-        //Cargo de array de Pedidos
-        ArrayList<String> PedidosCargados = GestorArchivos.cargarArray("ArrayPedidos.txt");
-
-        //Convierto de array de String a Objetos de tipo Pedido
-        for (int i = 0; i < PedidosCargados.size(); i++) {
-            Pedido pedido = Modelo.recuperarPedido(PedidosCargados.get(i));
-            Pedidos.add(pedido);
-        }
-        //-----------------------------
-    }
-
-    public static Socio recuperarSocio(String cadena) {
-
-        String[] vector = cadena.split("%");
-        String nombre = vector[0];
-        String apellido = vector[1];
-        String dniString = vector[2];
-
-        int DNI = Integer.parseInt(dniString);
-        return new Socio(nombre, apellido, DNI);
-    }
-    public static Libro recuperarLibro(String cadena) {
-
-        String[] vector = cadena.split("%");
-        String nombre = vector[0];
-        String autor = vector[1];
-        String categoria = vector[2];
-        String disponibilidad=vector[3];
-        boolean disp=Boolean.parseBoolean(disponibilidad);
-        return new Libro(nombre, autor,categoria,disp);
-    }
-    public static Pedido recuperarPedido(String cadena){
-        String []vector=cadena.split("&");
-        String fechaPrestamo=vector[0];
-        LocalDate prestamo=LocalDate.parse(fechaPrestamo);
-        String fechaDevolver=vector[1];
-        LocalDate devolver=LocalDate.parse(fechaDevolver);
-        String libro=vector[2];
-        Libro LibroPedido=recuperarLibro(libro);
-        String socio=vector[3];
-        Socio SocioP=recuperarSocio(socio);
-
-        return new Pedido(prestamo,devolver,LibroPedido,SocioP);
-    }
+      Pedidos.add(prestamo+"%"+fecha_Devolver+"%"+libroPedido.toString("&")+"%"+socioPrestado.toString("&"));
+      GestorArchivos.guardarArray(Pedidos,"ArrayPedidos.txt");
+   }
 
 
+   public static ArrayList<String> cargarSocios(){
+      ArrayList<String> Socios=GestorArchivos.cargarArray("ArraySocios.txt");
+     /* try{
+         PreparedStatement pSSelect= Conexion.getInstance().prepareStatement("SELECT * FROM socios");
+         ResultSet rs=pSSelect.executeQuery();
 
+         while (rs.next()){
+            System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4));
+         }
+         Conexion.cerrarConexion();
+         pSSelect.close();
+      }catch (SQLException e){
+         System.out.println("Error al recuperar un socio");
+         throw new RuntimeException(e);
+      }*/
+
+      return Socios;
+   }
+   public static ArrayList<String> cargarLibros(){
+      ArrayList<String> LibrosCargados = GestorArchivos.cargarArray("ArrayLibros.txt");
+      return LibrosCargados;
+   }
+
+   public static ArrayList<Libro> cargarArrayDeObjetoLibro(){
+      ArrayList<Libro>objetoLibro=new ArrayList<>();
+      String vector[];
+      for (int i=0;i<cargarLibros().size();i++){
+        vector =cargarLibros().get(i).split("%");
+         String titulo = vector[0];
+         String autor = vector[1];
+         String categoria = vector[2];
+         boolean disp = Boolean.parseBoolean(vector[3]);
+
+         objetoLibro.add(new Libro(titulo,autor,categoria,disp));
+      }
+
+      return objetoLibro;
+   }
+
+   public static ArrayList<Socio> cargarArrayDeObjetoSocio(){
+      ArrayList<Socio>Socios=new ArrayList<>();
+      String vector[];
+      for (int i=0;i<cargarSocios().size();i++){
+         vector=cargarSocios().get(i).split("%");
+         Socios.add(new Socio(vector[0],vector[1],Integer.parseInt(vector[2])));
+      }
+
+      return Socios;
+   }
+   public static ArrayList<Pedido> cargarArrayDeObjetoPedido(){
+      ArrayList<Pedido>Pedidos=new ArrayList<>();
+
+      return Pedidos;
+
+   }
 }
