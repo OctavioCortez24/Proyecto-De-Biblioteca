@@ -5,17 +5,27 @@ public class Libro {
     private boolean disponibilidad;
     private String nombreDelAutor;
     private String categoria;
+    private int libroID;
 
 
     public Libro() {
 
     }
 
-    public Libro(String nombre, String nombreDelAutor, String categoria, boolean disponibilidad) {
+    public Libro(int idLibro,String nombre, String nombreDelAutor, String categoria, boolean disponibilidad) {
+        this.libroID=idLibro;
         this.tituloDeLib = nombre;
         this.nombreDelAutor = nombreDelAutor;
         this.categoria = categoria;
         this.disponibilidad = disponibilidad;
+    }
+
+    public int getLibroID() {
+        return libroID;
+    }
+
+    public void setLibroID(int libroID) {
+        this.libroID = libroID;
     }
 
     public String getNombreDeLib() {
@@ -72,6 +82,10 @@ public class Libro {
     }
 
     public void añadirLibro(){
-        Modelo.guardarLibro(tituloDeLib,nombreDelAutor,categoria,disponibilidad);
+        Modelo.guardarLibro(libroID,tituloDeLib,nombreDelAutor,categoria,disponibilidad);
+    }
+
+    public void darDeBaja(){
+
     }
 }

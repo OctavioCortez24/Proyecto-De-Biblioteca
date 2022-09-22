@@ -19,8 +19,8 @@ public class Vista {
         System.out.println("[2]--> Añadir un libro");
         System.out.println("[3]--> Ver socios");
         System.out.println("[4]--> Ver libros");
-        System.out.println("[5]--> Eliminar Libro");
-        System.out.println("[6]--> Eliminar Socio");
+        System.out.println("[5]--> Dar de baja un Libro");
+        System.out.println("[6]--> Dar de baja un Socio");
         System.out.println("[7]--> Pedir un libro");
         System.out.println("[8]--> Mostrar Pedidos");
         System.out.println("[9]--> Devolver libro");
@@ -69,7 +69,7 @@ public class Vista {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Seleccione el numero del Libro:");
         for (int i = 0; i < Libros.size(); i++) {
-            System.out.println("[" + i + "]--> " + Libros.get(i).getNombreDeLib());
+            System.out.println("[" + Libros.get(i).getLibroID() + "]--> " + Libros.get(i).getNombreDeLib());
         }
         int numerLibro = 0;
         do {
@@ -92,7 +92,7 @@ public class Vista {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Seleccione el numero del socio:");
         for (int i = 0; i < Socios.size(); i++) {
-            System.out.println("[" + i + "]--> " + Socios.get(i));
+            System.out.println("[" + Socios.get(i).getSocioID() + "]--> " + Socios.get(i));
         }
         boolean bandera = false;
         do {

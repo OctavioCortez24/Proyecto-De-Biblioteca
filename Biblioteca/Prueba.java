@@ -9,27 +9,13 @@ import java.util.*;
 
 public class Prueba {
     public static void main(String[] args) {
-
-        ArrayList<String>test=new ArrayList<>();
-        test.add("Prueba#P#1");
-        test.add("Prueba2#p2#2");
-
-        String pru=GestorArchivos.empaquetador(test,"\r\n");
-        GestorArchivos.guardar("Prueba.txt",pru);
-
-        String finalP=GestorArchivos.cargar("Prueba.txt");
-
-        String line = System.getProperty("line.separator");
-
-        String f[]=finalP.split(line);
-        //ArrayList<String>f=GestorArchivos.desempaquetador(finalP,"\n");
-        for (int i=0;i<f.length;i++){
-            System.out.println(f[i]);
-        }
-
+        Scanner Leer = new Scanner(System.in);
+        ArrayList<String>S=new ArrayList<>();
+        LocalDate n=null;
+        System.out.println(n);
     }
 
-    public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {
+   /* public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Registrar un pedido");
         LocalDate prestamoHoy = LocalDate.now();//Fecha de hoy
@@ -54,7 +40,7 @@ public class Prueba {
 
 
         return new Pedido(prestamoHoy, fechaDevolverLibro, libroElegido, socio);
-    }
+    }*/
 
     public static int devolverLibro(ArrayList<Libro> Libros) {
         int numerLibro = 0;

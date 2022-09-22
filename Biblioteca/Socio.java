@@ -9,15 +9,25 @@ public class Socio {
     private String nombre;
     private String apellido;
     private int DNI;
+    private int socioID;
 
     public Socio() {
     }
 
-    public Socio(String nombre, String apellido, int DNI) {
+    public Socio(int socioID,String nombre, String apellido, int DNI) {
 
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
+        this.socioID=socioID;
+    }
+
+    public int getSocioID() {
+        return socioID;
+    }
+
+    public void setSocioID(int socioID) {
+        this.socioID = socioID;
     }
 
     public String getNombre() {
@@ -59,6 +69,10 @@ public class Socio {
         return nombre.equals(s.nombre) & apellido.equals(s.apellido) & DNI==s.DNI;
     }
     public void agregarSocio(){
-        Modelo.guardarSocio(nombre,apellido,DNI);
+        Modelo.guardarSocio(socioID,nombre,apellido,DNI);
     }
+    public void darDeBaja(){
+
+    }
+
 }

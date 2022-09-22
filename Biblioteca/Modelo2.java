@@ -69,9 +69,9 @@ public class Modelo2 {
         GestorArchivos.guardarArray(LibrosString, "ArrayLibros.txt");
     }
 
-    public static void CargarSocios() {
-        /* Ahora recupero los arrays de String y los vuelvo a convertir en array de objetos.
-         */
+   /* public static void CargarSocios() {
+        Ahora recupero los arrays de String y los vuelvo a convertir en array de objetos.
+
         //Cargo el array Socio-------------
         ArrayList<String> SociosCargados = GestorArchivos.cargarArray("ArraySocios.txt");
 
@@ -83,7 +83,7 @@ public class Modelo2 {
             }
         }
         //-----------------------------
-    }
+    }*/
 
     public static void CargarLibros() {
         //Cargo el array de Libros
@@ -97,7 +97,7 @@ public class Modelo2 {
         //-----------------------------
     }
 
-    public static void CargarPedidos() {
+  /*  public static void CargarPedidos() {
 
         //Cargo de array de Pedidos
         ArrayList<String> PedidosCargados = GestorArchivos.cargarArray("ArrayPedidos.txt");
@@ -108,9 +108,9 @@ public class Modelo2 {
             Pedidos.add(pedido);
         }
         //-----------------------------
-    }
+    }*/
 
-    public static Socio recuperarSocio(String cadena) {
+    /*public static Socio recuperarSocio(String cadena) {
 
         String[] vector = cadena.split("%");
         String nombre = vector[0];
@@ -119,20 +119,21 @@ public class Modelo2 {
 
         int DNI = Integer.parseInt(dniString);
         return new Socio(nombre, apellido, DNI);
-    }
+    }*/
 
     public static Libro recuperarLibro(String cadena) {
 
         String[] vector = cadena.split("%");
-        String nombre = vector[0];
-        String autor = vector[1];
-        String categoria = vector[2];
-        String disponibilidad = vector[3];
+        int idLibro=Integer.parseInt(vector[0]);
+        String nombre = vector[1];
+        String autor = vector[2];
+        String categoria = vector[3];
+        String disponibilidad = vector[4];
         boolean disp = Boolean.parseBoolean(disponibilidad);
-        return new Libro(nombre, autor, categoria, disp);
+        return new Libro(idLibro,nombre, autor, categoria, disp);
     }
 
-    public static Pedido recuperarPedido(String cadena) {
+   /* public static Pedido recuperarPedido(String cadena) {
         String[] vector = cadena.split("&");
         String fechaPrestamo = vector[0];
         LocalDate prestamo = LocalDate.parse(fechaPrestamo);
@@ -144,7 +145,7 @@ public class Modelo2 {
         Socio SocioP = recuperarSocio(socio);
 
         return new Pedido(prestamo, devolver, LibroPedido, SocioP);
-    }
+    }*/
 
 
     public static void guardarSocio(Socio s) {

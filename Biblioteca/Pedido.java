@@ -8,26 +8,34 @@ import java.util.Date;
 public class Pedido {
     private LocalDate fecha_Prestamo;
     private LocalDate fecha_Devolver;
-    private Libro libroPedido;
-    private Socio socioPrestado;
+    private int libroID;
+    private int socioID;
 
-    public Pedido() {
+    public Pedido() {}
 
-    }
-
-    public Pedido(LocalDate prestamo, LocalDate fecha_Devolver, Libro libroPedido, Socio socioPrestado) {
+    public Pedido(LocalDate prestamo, LocalDate fecha_Devolver, int libroID, int socioID) {
         this.fecha_Prestamo = prestamo;
         this.fecha_Devolver = fecha_Devolver;
-        this.libroPedido = libroPedido;
-        this.socioPrestado = socioPrestado;
+        this.libroID = libroID;
+        this.socioID = socioID;
+    }
+    //Getters and Setters
+
+
+    public int getLibroID() {
+        return libroID;
     }
 
-    public Socio getSocioPrestado() {
-        return socioPrestado;
+    public void setLibroID(int libroID) {
+        this.libroID = libroID;
     }
 
-    public void setSocioPrestado(Socio socioPrestado) {
-        this.socioPrestado = socioPrestado;
+    public int getSocioID() {
+        return socioID;
+    }
+
+    public void setSocioID(int socioID) {
+        this.socioID = socioID;
     }
 
     public LocalDate getFecha_Prestamo() {
@@ -46,22 +54,14 @@ public class Pedido {
         this.fecha_Devolver = fecha_Devolver;
     }
 
-    public Libro getLibroPedido() {
-        return libroPedido;
-    }
-
-    public void setLibroPedido(Libro libroPedido) {
-        this.libroPedido = libroPedido;
-    }
-
-
-    public static void devolverLibro(int numeroLibro) {
-        //Modelo.getLibros().get(numeroLibro).setDisponibilidad(true);
+    //--------------------------------------------------------------------------------------------------
+    public void devolverLibro() {
+       //Terminar esto
     }
 
     public void anadirPedido() {
 
-        Modelo.guardarPedido(fecha_Prestamo,fecha_Devolver,libroPedido,socioPrestado);
+        Modelo.guardarPedido(fecha_Prestamo,fecha_Devolver,libroID,socioID);
     }
 
     ;
@@ -71,16 +71,11 @@ public class Pedido {
 
         return "Fecha que fue prestado: " + fecha_Prestamo + "\n" +
                 "Fecha para ser devuelto: " + fecha_Devolver + "\n" +
-                "Libro pedido: " + libroPedido.getNombreDeLib() + "\n" +
-                "Socio nombre: " + socioPrestado;
+                "ID del Libro pedido: " + libroID + "\n" +
+                "ID del Socio : " + socioID;
     }
 
     public String toString(String ceparador) {
-        return fecha_Prestamo + ceparador + fecha_Devolver + ceparador + libroPedido.toString("%") + ceparador + socioPrestado.toString("%");
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+        return fecha_Prestamo + ceparador + fecha_Devolver + ceparador + libroID + ceparador + socioID;
     }
 }
