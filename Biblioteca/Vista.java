@@ -161,4 +161,8 @@ public class Vista {
             System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         }
     }
+    public static void validacionDeDatos(String resultado){
+        System.out.println(resultado);
+    }
+
 }

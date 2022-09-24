@@ -1,6 +1,8 @@
 package Biblioteca;
 
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,10 +71,40 @@ public class Socio {
         return nombre.equals(s.nombre) & apellido.equals(s.apellido) & DNI==s.DNI;
     }
     public void agregarSocio(){
-        Modelo.guardarSocio(socioID,nombre,apellido,DNI);
+        //Para guardar en txt
+        ArrayList<String> Socios = new ArrayList<>();
+        Socios.addAll(GestorArchivos.cargarArray("ArraySocios.txt"));
+        Socios.add(socioID + "%" + nombre + "%" + apellido + "%" + DNI);
+        GestorArchivos.guardarArray(Socios, "ArraySocios.txt");
+        //------
+        try {
+            PreparedStatement pSInsert = Conexion.getInstance().prepareStatement("INSERT INTO socios VALUES(?,?,?,?)");
+            pSInsert.setString(1, null);
+            pSInsert.setString(2, nombre);
+            pSInsert.setString(3, apellido);
+            pSInsert.setInt(4, DNI);
+            pSInsert.executeUpdate();
+
+
+            pSInsert.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en guardar un socio");
+            throw new RuntimeException(e);
+        }
     }
     public void darDeBaja(){
 
+    }
+    public boolean validacion(){
+        ArrayList<Socio>SociosC=Modelo.cargarArrayDeObjetoSocio();
+        boolean retorno=false;
+        for (int i=0;i<SociosC.size();i++){
+            if (equals(SociosC.get(i))){
+                retorno=true;
+            }
+        }
+        return retorno;
     }
 
 }

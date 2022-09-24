@@ -1,6 +1,9 @@
 package Biblioteca;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -61,7 +64,27 @@ public class Pedido {
 
     public void anadirPedido() {
 
-        Modelo.guardarPedido(fecha_Prestamo,fecha_Devolver,libroID,socioID);
+        ArrayList<String> Pedidos = new ArrayList<>();
+        Pedidos.addAll(GestorArchivos.cargarArray("ArrayPedidos.txt"));
+        Pedidos.add(fecha_Prestamo + "%" + fecha_Devolver + "%" + libroID + "%" + socioID);
+        GestorArchivos.guardarArray(Pedidos, "ArrayPedidos.txt");
+
+        try {
+            PreparedStatement pSInsert = Conexion.getInstance().prepareStatement("INSERT INTO pedidos VALUES(?,?,?,?,?)");
+            pSInsert.setString(1, null);
+            pSInsert.setString(2, fecha_Prestamo + "");
+            pSInsert.setString(3, fecha_Devolver + "");
+            pSInsert.setInt(4, libroID);
+            pSInsert.setInt(5, socioID);
+            pSInsert.executeUpdate();
+
+            pSInsert.close();
+
+
+        } catch (SQLException e) {
+            System.out.println("Error en guardar un pedido");
+            throw new RuntimeException(e);
+        }
     }
 
     ;

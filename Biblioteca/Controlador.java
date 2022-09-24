@@ -1,31 +1,25 @@
 package Biblioteca;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
-import java.sql.*;
 
 public class Controlador {
 
 
     public static void main(String[] args) {
 
-        //Cargo los array con la informacion que tengo almacenada en el archivo .txt.
-        ArrayList<Libro> Libros = Modelo.cargarArrayDeObjetoLibro();
-        ArrayList<Socio> Socios = Modelo.cargarArrayDeObjetoSocio();
-        ArrayList<Pedido> Pedidos = Modelo.cargarArrayDeObjetoPedido();
-
         LibroEstado lE1 = new LibroEstado(1, "Ocupado");
         //  lE1.anadirLibroEstado();
         LibroEstado lE2 = new LibroEstado(2, "Disponible");
         // lE2.anadirLibroEstado();
-        LibroEstado lE3 = new LibroEstado(3, "Desactivado");
-        // lE3.anadirLibroEstado();
 
         int eleccion = 0;
         //Menu
         do {
+            //Cargo los array con la informacion que tengo almacenada en el archivo .txt.
+            ArrayList<Libro> Libros = Modelo.cargarArrayDeObjetoLibro();
+            ArrayList<Socio> Socios = Modelo.cargarArrayDeObjetoSocio();
+            ArrayList<Pedido> Pedidos = Modelo.cargarArrayDeObjetoPedido();
             eleccion = Vista.menu();
             if (eleccion == 1) {
 
@@ -34,7 +28,14 @@ public class Controlador {
                 int DNI = Integer.parseInt(AtributosSocio.get(2));
 
                 Socio socio1 = new Socio(Socios.size() + 1, AtributosSocio.get(0), AtributosSocio.get(1), DNI);//Instancio un socio
-                socio1.agregarSocio();
+                if (socio1.validacion()){
+                    Vista.validacionDeDatos("El Socio ya esta añadido");
+                }else {
+
+                    socio1.agregarSocio();
+                    Vista.validacionDeDatos("Se añadio correctamente");
+                }
+
 
             } else if (eleccion == 2) {
 
@@ -44,8 +45,13 @@ public class Controlador {
                 boolean disponibilidad = Boolean.parseBoolean(AtributosLi.get(3));
 
                 Libro libro1 = new Libro(idLIbro ,AtributosLi.get(0), AtributosLi.get(1), AtributosLi.get(2), disponibilidad);//Instancio un libro
-                libro1.añadirLibro();//Añado el libro a la base de datos.
-                EstadoLibro estadoLibro=new EstadoLibro(LocalDate.now(),null,idLIbro,2);
+                if (libro1.validacion()){
+                    Vista.validacionDeDatos("El libro ya se encuentra en la biblioteca");
+                }else {
+                    libro1.añadirLibro();//Añado el libro a la base de datos.
+                    Vista.validacionDeDatos("El libro se añadio correctamente");
+                }
+                LibroEstado.EstadoLibro estadoLibro=new LibroEstado.EstadoLibro(LocalDate.now(),null,idLIbro,2);
                 estadoLibro.anadirEstadoLibro();
             } else if (eleccion == 3) {
 
@@ -80,7 +86,8 @@ public class Controlador {
                 //------
                 Pedido p = new Pedido(LocalDate.now(), LocalDate.now().plusDays(15), idLibro, idSocio);//Instancio un pedido
                 p.anadirPedido();
-
+                LibroEstado.EstadoLibro estadoLibro=new LibroEstado.EstadoLibro(LocalDate.now(),null,idLibro,1);
+                estadoLibro.anadirEstadoLibro();
             } else if (eleccion == 8) {
                 Vista.mostrarLosPedidos(Pedidos);
 
@@ -95,14 +102,6 @@ public class Controlador {
             }
 
         } while (eleccion != 0);
-
-        try {
-            Conexion.cerrarConexion();
-        } catch (SQLException e) {
-            System.out.println("Error al cerrar la conexion con la base de datos");
-            throw new RuntimeException(e);
-        }
-
     }
 
 

@@ -1,5 +1,9 @@
 package Biblioteca;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class Libro {
     private String tituloDeLib;
     private boolean disponibilidad;
@@ -82,10 +86,39 @@ public class Libro {
     }
 
     public void añadirLibro(){
-        Modelo.guardarLibro(libroID,tituloDeLib,nombreDelAutor,categoria,disponibilidad);
+        ArrayList<String> Libros = new ArrayList<>();
+        Libros.addAll(GestorArchivos.cargarArray("ArrayLibros.txt"));
+        Libros.add(libroID + "%" + tituloDeLib + "%" + nombreDelAutor + "%" + categoria + "%" + disponibilidad);
+        //Guardo el array de String con el metodo guardarArray del Gestor de Archivos
+        GestorArchivos.guardarArray(Libros, "ArrayLibros.txt");
+        try {
+            PreparedStatement pSInsert = Conexion.getInstance().prepareStatement("INSERT INTO libros VALUES(?,?,?,?,?)");
+            pSInsert.setString(1, null);
+            pSInsert.setString(2, tituloDeLib);
+            pSInsert.setString(3, nombreDelAutor);
+            pSInsert.setString(4, categoria);
+            pSInsert.setBoolean(5, disponibilidad);
+            pSInsert.executeUpdate();
+
+            pSInsert.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error en guardar un libro");
+            throw new RuntimeException(e);
+        }
     }
 
     public void darDeBaja(){
 
+    }
+    public boolean validacion(){
+        ArrayList<Socio>LibrosC=Modelo.cargarArrayDeObjetoSocio();
+        boolean retorno=false;
+        for (int i=0;i<LibrosC.size();i++){
+            if (equals(LibrosC.get(i))){
+                retorno=true;
+            }
+        }
+        return retorno;
     }
 }
