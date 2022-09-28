@@ -95,11 +95,12 @@ public class Socio {
         GestorArchivos.guardarArray(Socios, "ArraySocios.txt");
         //------
         try {
-            PreparedStatement pSInsert = Conexion.getInstance().prepareStatement("INSERT INTO socios VALUES(?,?,?,?)");
+            PreparedStatement pSInsert = Conexion.getInstance().prepareStatement("INSERT INTO socios VALUES(?,?,?,?,?)");
             pSInsert.setString(1, null);
             pSInsert.setString(2, nombre);
             pSInsert.setString(3, apellido);
             pSInsert.setInt(4, DNI);
+            pSInsert.setBoolean(5,desactivado);
             pSInsert.executeUpdate();
 
 
