@@ -130,7 +130,7 @@ public class Modelo2 {
         String categoria = vector[3];
         String disponibilidad = vector[4];
         boolean disp = Boolean.parseBoolean(disponibilidad);
-        return new Libro(idLibro,nombre, autor, categoria, disp);
+        return new Libro(idLibro,nombre, autor, categoria, disp,false);
     }
 
    /* public static Pedido recuperarPedido(String cadena) {

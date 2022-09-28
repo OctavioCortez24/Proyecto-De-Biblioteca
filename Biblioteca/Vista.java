@@ -57,9 +57,6 @@ public class Vista {
         String categoriaLib = Leer.nextLine();
         array.add(categoriaLib);
 
-        String disponibleLib = "true";
-        array.add(disponibleLib);
-
         return array;
 
     }
@@ -69,7 +66,7 @@ public class Vista {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Seleccione el numero del Libro:");
         for (int i = 0; i < Libros.size(); i++) {
-            System.out.println("[" + Libros.get(i).getLibroID() + "]--> " + Libros.get(i).getNombreDeLib());
+            System.out.println("[" + Libros.get(i).getLibroID() + "]--> " + Libros.get(i).getTituloDeLib()+" Disponible: "+Libros.get(i).isDisponibilidad());
         }
         int numerLibro = 0;
         do {
@@ -134,14 +131,12 @@ public class Vista {
     }
 
 
-    public static void mostrarLosSocios(ArrayList<Socio>socios) {
-      //Cambiar
-
+    public static void mostrarLosSocios(ArrayList<Socio> socios) {
+        System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         for (int i = 0; i < socios.size(); i++) {
-            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
             System.out.println(socios.get(i));
-            System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         }
+        System.out.println("o---o---o---o---o---o---o---o---o---o---o");
     }
 
     public static void mostrarLosLibros(ArrayList<Libro> Libros) {
@@ -161,7 +156,8 @@ public class Vista {
             System.out.println("o---o---o---o---o---o---o---o---o---o---o");
         }
     }
-    public static void validacionDeDatos(String resultado){
+
+    public static void validacionDeDatos(String resultado) {
         System.out.println(resultado);
     }
 

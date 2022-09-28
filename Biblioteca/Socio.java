@@ -4,7 +4,6 @@ package Biblioteca;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Socio {
 
@@ -12,16 +11,34 @@ public class Socio {
     private String apellido;
     private int DNI;
     private int socioID;
+    private boolean desactivado;
 
     public Socio() {
     }
 
-    public Socio(int socioID,String nombre, String apellido, int DNI) {
+    public Socio(int socioID,String nombre, String apellido, int DNI, boolean desactivado) {
 
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
         this.socioID=socioID;
+        this.desactivado=desactivado;
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
+
+    public boolean isDesactivado() {
+        return desactivado;
+    }
+
+    public void setDesactivado(boolean desactivado) {
+        this.desactivado = desactivado;
     }
 
     public int getSocioID() {
@@ -94,6 +111,7 @@ public class Socio {
         }
     }
     public void darDeBaja(){
+        desactivado=true;
 
     }
     public boolean validacion(){

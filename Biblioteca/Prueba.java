@@ -9,10 +9,23 @@ import java.util.*;
 
 public class Prueba {
     public static void main(String[] args) {
-        Scanner Leer = new Scanner(System.in);
-        ArrayList<String>S=new ArrayList<>();
-        LocalDate n=null;
-        System.out.println(n);
+        ArrayList<String>arrayList=new ArrayList<>();
+        arrayList.add("Prueba1");
+        arrayList.add("Prueba2");
+        arrayList.add("Prueba3");
+
+        GestorArchivos.guardar("Prueba.txt",GestorArchivos.empaquetador(arrayList,"#\n"));
+
+        String p=GestorArchivos.cargar("Prueba.txt");
+        System.out.println(p);
+        arrayList=GestorArchivos.desempaquetador(p,"#");
+
+
+
+        for (int i=0;i< arrayList.size();i++){
+            System.out.println(arrayList.get(i));
+        }
+
     }
 
    /* public static Pedido crearPedido(ArrayList<Libro> Libros, ArrayList<Socio> Socios) {
@@ -47,7 +60,7 @@ public class Prueba {
         Scanner leerNumer = new Scanner(System.in);
         System.out.println("Seleccione el numero del Lbro:");
         for (int i = 0; i < Libros.size(); i++) {
-            if (Libros.get(i).getDisponibilidad() == false) {
+            if (Libros.get(i).isDisponibilidad() == false) {
                 System.out.println("[" + i + "]--> " + Libros.get(i));
             }
         }

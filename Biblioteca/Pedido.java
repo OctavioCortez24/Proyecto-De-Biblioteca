@@ -101,4 +101,31 @@ public class Pedido {
     public String toString(String ceparador) {
         return fecha_Prestamo + ceparador + fecha_Devolver + ceparador + libroID + ceparador + socioID;
     }
+    public ArrayList<Libro> mostrarLibros(){
+        ArrayList<Libro> Libros = new ArrayList<>();
+        ArrayList<String> LibrosCargados = GestorArchivos.cargarArray("ArrayLibros.txt");
+
+        String vector[];
+        for (int i = 0; i < LibrosCargados.size(); i++) {
+            vector = LibrosCargados.get(i).split("%");
+            boolean disp = Boolean.parseBoolean(vector[4]);
+            boolean desactivado = Boolean.parseBoolean(vector[5]);
+
+            Libros.add(new Libro(Integer.parseInt(vector[0]), vector[1], vector[2], vector[3], disp, desactivado));
+        }/*
+        try {
+            PreparedStatement pSSelect = Conexion.getInstance().prepareStatement("SELECT * FROM libros");
+            ResultSet rs = pSSelect.executeQuery();
+            while (rs.next()) {
+                Libros.add(new Libro(rs.getInt(1),rs.getString("tituloLibro"), rs.getString("autorLibro"),
+                        rs.getString("categoriaLibro"), rs.getBoolean(5),rs.getBoolean(6)));
+            }
+            pSSelect.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al recuperar un libro");
+            throw new RuntimeException(e);
+        }*/
+        return Libros;
+    }
 }
